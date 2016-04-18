@@ -1,0 +1,36 @@
+<form [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Metabolite</label>
+                <input type="text" class="form-control" placeholder="Metabolite Name" [ngFormControl]="form.controls['name']">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Concentration</label>
+                <select class="form-control" [ngFormControl]="form.controls['concentration']">
+                    <option *ngFor="#c of concenration" [value]="c">
+                        {{ c }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Value</label>
+                <input type="text" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
+            </div>
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-default">
+            Add
+          </button>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-12">
+        {{ form.value | json }}
+    </div>
+</div>

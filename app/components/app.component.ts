@@ -10,7 +10,10 @@ import {SearchComponent} from './search/search.component';
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-    { path: '/search/...', name: 'Search', component: SearchComponent, useAsDefault: true },
-    { path: '/analyze', name: 'Analyze', component: AnalyzeComponent }
+    {
+        path: '/search/...', name: 'Search',
+        component: SearchComponent, useAsDefault: true
+    },
+    { path: '/analyze/...', name: 'Analyze', component: AnalyzeComponent }
 ])
 export class AppComponent { }
