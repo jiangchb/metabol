@@ -4,8 +4,8 @@ import {MetaboliteDetailsComponent} from './metaboliteDetails/metaboliteDetails.
 import {ReactionDetailsComponent} from './reactionDetails/reactionDetails.component';
 
  @Component ({
+   selector: 'detail',
    template: `<router-outlet></router-outlet>`,
-   selector: 'details',
    directives: [ROUTER_DIRECTIVES]
 
  })
