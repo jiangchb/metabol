@@ -15,7 +15,7 @@ export class ManualComponent {
     exactValue: boolean;
     conTable: Array<MetaboliteConcentration>;
 
-    constructor(fb: FormBuilder) {
+    constructor(private fb: FormBuilder) {
         this.form = fb.group({
             "name": ["", Validators.required],
             "concentration": ["", Validators.required],
@@ -38,6 +38,16 @@ export class ManualComponent {
         c.concentration = value['concentration'];
         c.exactValue = value['value'];
         this.conTable.push(c);
+        // this.form = this.fb.group({
+        //     "name": ["", Validators.required],
+        //     "concentration": ["", Validators.required],
+        //     "value": [""]
+        // });
+        //
+        // // .forEach((name, control) => {
+        // //     control.updateValue('');
+        // //     control.setErrors(null);
+        // // });
     }
 
     analyze() { }

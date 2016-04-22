@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {MeasurementComponent} from './measurement/measurement.component';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ManualComponent} from './manual/manual.component';
+import {UploadComponent} from './upload/upload.component';
 
 @Component({
     selector: 'analyze',
@@ -15,7 +16,7 @@ import {ManualComponent} from './manual/manual.component';
     },
     {
         path: '/upload-measurement', name: 'Upload',
-        component: MeasurementComponent
+        component: UploadComponent
     },
     {
         path: '/add-manual-measurement', name: 'Manual',
