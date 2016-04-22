@@ -1,16 +1,76 @@
-<table class="table">
-  <tr *ngFor="#c of conTable;#i=index">
-    <td>
-      {{ c.name }}
-    </td>
-    <td>
-      {{ c.concentration }}
-    </td>
-    <td>
-      {{ c.exactValue }}
-    </td>
-    <td>
-      <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="remove(i)"></span>
-    </td>
-  </tr>
-</table>
+<form class="hidden-md hidden-lg" [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Metabolite Name" [ngFormControl]="form.controls['name']">
+        <span class="text-danger" *ngIf="!form.controls['name'].valid && form.controls['name'].dirty">
+            Field Required
+        </span>
+    </div>
+    <div class="form-group">
+        <select class="form-control" [ngFormControl]="form.controls['concentration']">
+            <option value="" disabled selected>Concentration</option>
+            <option *ngFor="#c of concenration" [value]="c">
+                {{ c }}
+            </option>
+        </select>
+        <span class="text-danger" *ngIf="!form.controls['concentration'].valid && form.controls['concentration'].dirty">
+            Field Required
+        </span>
+    </div>
+    <div class="form-group" *ngIf="form.controls['concentration'].value == 'Exact Value'">
+        <input type="text" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
+    </div>
+    <input type="submit" class="btn btn-default" value="Add">
+</form>
+
+<form [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Metabolite Name</th>
+                    <th>Concentration</th>
+                    <th>Exact Value</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hidden-xs hidden-sm">
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Metabolite Name" [ngFormControl]="form.controls['name']">
+                            <span class="text-danger" *ngIf="!form.controls['name'].valid && form.controls['name'].dirty">
+                                Field Required
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control" [ngFormControl]="form.controls['concentration']">
+                                <option value="" disabled selected>Concentration</option>
+                                <option *ngFor="#c of concenration" [value]="c">
+                                    {{ c }}
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group" *ngIf="form.controls['concentration'].value == 'Exact Value'">
+                            <input type="text" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
+                        </div>
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-default" value="Add">
+                    </td>
+                </tr>
+                <tr *ngFor="#c of conTable;#i=index">
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.concentration }}</td>
+                    <td>{{ c.exactValue }}</td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="remove(i)"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
