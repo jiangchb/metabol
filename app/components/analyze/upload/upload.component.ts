@@ -2,11 +2,12 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {ConcentrationTableComponent} from '../concentrationTable/concentrationTable.component';
 import {MetaboliteConcentration} from '../../../services/analyze.service';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'upload-measurement',
     templateUrl: '/app/components/analyze/upload/upload.html',
-    directives: [ConcentrationTableComponent]
+    directives: [ConcentrationTableComponent, ROUTER_DIRECTIVES]
 })
 export class UploadComponent {
     conTable: Array<MetaboliteConcentration>;
@@ -50,6 +51,6 @@ export class UploadComponent {
     }
 
     analyze() {
-      console.log(this.conTable);
+        console.log(this.conTable);
     }
 }
