@@ -15,5 +15,7 @@ export class ManualComponent {
         this.conTable = new Array<MetaboliteConcentration>();
     }
 
-    analyze() { }
+    analyze() {
+      console.log(this.conTable);
+    }
 }

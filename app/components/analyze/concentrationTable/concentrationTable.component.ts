@@ -1,6 +1,6 @@
 import {Component, Input} from 'angular2/core';
 import {MetaboliteConcentration} from '../../../services/analyze.service';
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
+import {Control, FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 
 @Component({
     selector: 'concentration-table',
@@ -27,8 +27,15 @@ export class ConcentrationTableComponent {
         return this.fb.group({
             "name": ["", Validators.required],
             "concentration": ["", Validators.required],
-            "value": [""]
-        });
+            "value": ["", Validators.pattern('[0-9]+(\\.[0-9]+)?')]
+        }, { validator: this.concentrationValueValidation });
+    }
+
+    concentrationValueValidation(group: ControlGroup) {
+        if (group.controls["concentration"].value == "Exact Value"
+            && !group.controls["value"].value.trim())
+            return { exactValueEmpty: true };
+        return null;
     }
 
     onSubmit(value) {
@@ -39,5 +46,4 @@ export class ConcentrationTableComponent {
         this.conTable.push(c);
         this.form = this.createForm();
     }
-
 }

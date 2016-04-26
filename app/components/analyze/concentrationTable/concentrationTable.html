@@ -1,6 +1,6 @@
 <form class="hidden-md hidden-lg" [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Metabolite Name" [ngFormControl]="form.controls['name']">
+        <input [ngFormControl]="form.controls['name']" type="text" class="form-control" placeholder="Metabolite Name">
         <span class="text-danger" *ngIf="!form.controls['name'].valid && form.controls['name'].dirty">
             Field Required
         </span>
@@ -18,8 +18,11 @@
     </div>
     <div class="form-group" *ngIf="form.controls['concentration'].value == 'Exact Value'">
         <input type="text" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
+        <span class="text-danger" *ngIf="form.errors?.exactValueEmpty && form.controls['value'].dirty">
+            Field Required
+        </span>
     </div>
-    <input type="submit" class="btn btn-default" value="Add">
+    <input [disabled]="!form.valid" type="submit" class="btn btn-default" value="Add">
 </form>
 
 <form [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
@@ -37,7 +40,7 @@
                 <tr class="hidden-xs hidden-sm">
                     <td>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Metabolite Name" [ngFormControl]="form.controls['name']">
+                            <input [ngFormControl]="form.controls['name']" type="text" class="form-control" placeholder="Metabolite Name">
                             <span class="text-danger" *ngIf="!form.controls['name'].valid && form.controls['name'].dirty">
                                 Field Required
                             </span>
@@ -56,16 +59,19 @@
                     <td>
                         <div class="form-group" *ngIf="form.controls['concentration'].value == 'Exact Value'">
                             <input type="text" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
+                            <span class="text-danger" *ngIf="form.errors?.exactValueEmpty && form.controls['value'].dirty">
+                                Field Required
+                            </span>
                         </div>
                     </td>
                     <td>
-                        <input type="submit" class="btn btn-default" value="Add">
+                        <input [disabled]="!form.valid" type="submit" class="btn btn-default" value="Add">
                     </td>
                 </tr>
                 <tr *ngFor="#c of conTable;#i=index">
                     <td>{{ c.name }}</td>
                     <td>{{ c.concentration }}</td>
-                    <td>{{ c.exactValue }}</td>
+                    <td>{{ c.exactValue || '-' }}</td>
                     <td>
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="remove(i)"></span>
                     </td>
