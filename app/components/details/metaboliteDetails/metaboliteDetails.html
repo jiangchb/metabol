@@ -1,72 +1,33 @@
 <section class="metaboliteDetails">
-    <div class="metaboliteDetailsChild col-md-8 col-md-offset-2">
+    <div *ngIf="metabolite" class="metaboliteDetailsChild col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <strong>
-                        3-Phospho-D-glyceroyl phosphate
+                        {{metabolite.name}}
                     </strong>
                 </h3>
             </div>
             <div class="panel-body">
                 <p>
-                    id: 13dpg_c
+                    id: {{metabolite.id}}
                 </p>
                 <p>
-                    charge: -4
+                    charge: {{metabolite.charge}}
                 </p>
                 <p>
-                    formula: C3H4O10P2</p>
+                    formula: {{metabolite.formula}}</p>
                 <p>
-                    compartment: c
+                    compartment: {{metabolite.compartment}}
                 </p>
                 <p>
                     annotation:
                 </p>
-                <ul style="list-style-type:none">
-                    <li>
-                        unipathway.compound: UPC00236
-                    </li>
-                    <li>
-                        biocyc: DPG
-                    </li>
-                    <li>
-                        bigg.metabolite: 13dpg
-                    </li>
-                    <li>
-                        seed.compound: cpd00203
-                    </li>
-                    <li>
-                        kegg.compound: C00236
-                    </li>
-                    <li>
-                        hmdb: HMDB01270
-                    </li>
-                    <li>
-                        reactome: REACT_29800
-                    </li>
-                    <li>
-                        chebi:
-                        <ul style="list-style-type:none">
-                            <li>
-                                CHEBI:16001
-                            </li>
-                            <li>
-                                CHEBI:1658
-                            </li>
-                            <li>
-                                CHEBI:20189
-                            </li>
-                            <li>
-                                CHEBI:57604
-                            </li>
-                            <li>
-                                CHEBI:11881
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        pubchem.substance: 3535
+                <ul>
+                    <li *ngFor="#item of metabolite.annotation|keysValues">
+                        <p>
+                            {{item}}
+                        </p>
                     </li>
                 </ul>
                 <br>
@@ -81,14 +42,12 @@
                             <a [routerLink]="['ReactionDetails']">glyceraldehyde-3-phosphate dehydrogenase</a>
                         </td>
                         <td>
-                            <strong>13dpg_c</strong>
-                            + h_c + nadh_c &#8594; g3p_c + nad_c+ pi_c</td>
+                            <strong>13dpg_c</strong> + h_c + nadh_c &#8594; g3p_c + nad_c+ pi_c</td>
                     </tr>
                     <tr>
                         <td>phosphoglycerate kinase</td>
                         <td>
-                            <strong>13dpg_c</strong>
-                            + atp_c + adp_c &#8594; 3pg_c</td>
+                            <strong>13dpg_c</strong> + atp_c + adp_c &#8594; 3pg_c</td>
                     </tr>
                 </tbody>
             </table>

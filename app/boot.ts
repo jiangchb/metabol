@@ -3,7 +3,10 @@ import {AppComponent} from './components/app.component';
 import {ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {AnalyzeService} from './services/analyze.service';
+import {MetaboliteService} from './services/metabolite.service';
+import {ReactionService} from './services/reaction.service';
+
 
 bootstrap(AppComponent, [
-    ROUTER_PROVIDERS, HTTP_PROVIDERS, AnalyzeService
+    ROUTER_PROVIDERS, HTTP_PROVIDERS, AnalyzeService ,MetaboliteService, ReactionService
 ]);

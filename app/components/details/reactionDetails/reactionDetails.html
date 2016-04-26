@@ -2,12 +2,12 @@
     <div class="reactionDetailsChild col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><strong>glyceraldehyde-3-phosphate dehydrogenase</strong></h3>
+                <h3 class="panel-title"><strong>{{reaction.name}}</strong></h3>
             </div>
             <div class="panel-body">
-                <p> id: GAPD </p>
-                <p> upper_bound: 1000.0 </p>
-                <p> lower_bound: -1000.0 </p>
+                <p> id: {{reaction.id}} </p>
+                <p> upper_bound: {{reaction.upper_bound}} </p>
+                <p> lower_bound: {{reaction.lower_bound}} </p>
                 <br>
                 <h3> <strong><a [routerLink]="['MetaboliteDetails']">13dpg_c</a></strong> + h_c + nadh_c → g3p_c + nad_c+ pi_c </h3>
                 <br>

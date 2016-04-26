@@ -4,11 +4,10 @@ import {AnalyzeComponent} from './analyze/analyze.component';
 import {SearchComponent} from './search/search.component';
 import {DetailsComponent} from './details/details.component';
 
-
 @Component({
     selector: 'app',
     templateUrl: '/app/components/app.html',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
 })
 @RouteConfig([
     {
