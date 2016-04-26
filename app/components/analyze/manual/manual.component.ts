@@ -16,6 +16,6 @@ export class ManualComponent {
     }
 
     analyze() {
-      console.log(this.conTable);
+      console.log(JSON.stringify(this.conTable));
     }
 }
