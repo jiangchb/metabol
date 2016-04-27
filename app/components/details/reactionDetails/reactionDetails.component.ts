@@ -1,13 +1,14 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {MetaboliteService} from '../../../services/metabolite.service';
-import {ReactionService} from '../../../services/reaction.service';
-import {KeysValuesPipe} from '../../../pipes/keysValues.pipe';
+import {MetaboliteService} from '../../../services/metabolite/metabolite.service';
+import {ReactionService} from '../../../services/reaction/reaction.service';
+import {ChemicalEquationComponent} from '../chemicalEquation/chemicalEquation.component';
+import {KeysPipe} from '../../../pipes/keys.pipe';
 
 @Component({
   templateUrl: 'app/components/details/reactionDetails/reactionDetails.html',
-  directives:[ROUTER_DIRECTIVES],
-  pipes: [KeysValuesPipe]
+  directives:[ROUTER_DIRECTIVES, ChemicalEquationComponent],
+  pipes: [KeysPipe]
 })
 
 export class ReactionDetailsComponent {

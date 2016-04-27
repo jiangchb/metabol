@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {ConcentrationTableComponent} from '../concentrationTable/concentrationTable.component';
-import {MetaboliteConcentration} from '../../../services/analyze.service';
+import {MetaboliteConcentration} from '../../../services/analyze/analyze.service';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
