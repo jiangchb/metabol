@@ -24,9 +24,9 @@
                     annotation:
                 </p>
                 <ul>
-                    <li *ngFor="#item of metabolite.annotation|keysValues">
-                        <p>
-                            {{item}}
+                    <li *ngFor="#key of metabolite.annotation|Keys">
+                        <p >
+                            {{key}}: {{metabolite.annotation[key]}}
                         </p>
                     </li>
                 </ul>

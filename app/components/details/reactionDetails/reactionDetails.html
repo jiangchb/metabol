@@ -9,7 +9,7 @@
                 <p> upper_bound: {{reaction.upper_bound}} </p>
                 <p> lower_bound: {{reaction.lower_bound}} </p>
                 <br>
-                <h3> <strong><a [routerLink]="['MetaboliteDetails']">13dpg_c</a></strong> + h_c + nadh_c → g3p_c + nad_c+ pi_c </h3>
+                <h3><chemical-equation [metabolites]="reaction.metabolites"></chemical-equation></h3>
                 <br>
 
                 <h4><strong>Connected Reactions</strong></h4>

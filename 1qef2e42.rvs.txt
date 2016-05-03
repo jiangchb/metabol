@@ -1,0 +1,50 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+# Conflicts:
+#	app/components/app.component.ts
+#	app/components/search/searchBar/searchBar.component.ts
+#	app/components/search/searchBar/searchBar.html
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 2 and 7 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   ../../../boot.ts
+#	modified:   ../../analyze/concentrationTable/concentrationTable.component.ts
+#	modified:   ../../analyze/concentrationTable/concentrationTable.html
+#	modified:   ../../analyze/manual/manual.component.ts
+#	modified:   ../../analyze/upload/upload.component.ts
+#	modified:   ../../analyze/upload/upload.html
+#	modified:   ../../app.component.ts
+#	modified:   ../../app.html
+#	new file:   ../../details/chemicalEquation/chemicalEquation.component.ts
+#	modified:   ../../details/metaboliteDetails/metaboliteDetails.component.ts
+#	modified:   ../../details/metaboliteDetails/metaboliteDetails.html
+#	modified:   ../../details/reactionDetails/reactionDetails.component.ts
+#	modified:   ../../details/reactionDetails/reactionDetails.html
+#	new file:   ../../documentation/documentation.component.ts
+#	new file:   ../../documentation/documentation.html
+#	new file:   ../../documentation/exampleFiles/example.csv
+#	new file:   ../../documentation/exampleFiles/example.json
+#	modified:   searchBar.html
+#	new file:   ../../../pipes/keys.pipe.ts
+#	deleted:    ../../../pipes/keysValues.pipe.ts
+#	renamed:    ../../../services/analyze.service.ts -> ../../../services/analyze/analyze.service.ts
+#	renamed:    ../../../services/metabolite.service.ts -> ../../../services/metabolite/metabolite.service.ts
+#	renamed:    ../../../services/metabolite.ts -> ../../../services/metabolite/metabolite.ts
+#	renamed:    ../../../services/reaction.service.ts -> ../../../services/reaction/reaction.service.ts
+#	renamed:    ../../../services/reaction.ts -> ../../../services/reaction/reaction.ts
+#
+
