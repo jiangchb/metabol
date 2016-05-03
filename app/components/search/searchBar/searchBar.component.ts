@@ -1,4 +1,7 @@
-import {Component,ElementRef} from 'angular2/core';
+import {Component, ElementRef} from 'angular2/core';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {RouteParams, Router} from 'angular2/router';
+
 
 @Component({
     selector: 'search-bar',
@@ -10,49 +13,53 @@ import {Component,ElementRef} from 'angular2/core';
 })
 export class SearchBarComponent {
     searchTerm: String;
-    query = '';
-    countries = [ "Albania","Andorra","Armenia","Austria","Azerbaijan","Belarus",
-                       "Belgium","Bosnia & Herzegovina","Bulgaria","Croatia","Cyprus",
-                       "Czech Republic","Denmark","Estonia","Finland","France","Georgia",
-                       "Germany","Greece","Hungary","Iceland","Ireland","Italy","Kosovo",
-                       "Latvia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Malta",
-                       "Moldova","Monaco","Montenegro","Netherlands","Norway","Poland",
-                       "Portugal","Romania","Russia","San Marino","Serbia","Slovakia","Slovenia",
-                       "Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Vatican City"];
-    public elementRef;
-    public filteredList = [];
-    constructor(myElement: ElementRef) {
-        this.elementRef = myElement;}
+    query: String;
+    apiUrl = 'http://biodb.sehir.edu.tr/api2/search/';
+    filteredMetabolites: Array<any>;
+    filteredReactions: Array<any>;
 
+    constructor(private elementRef: ElementRef, private http: Http,
+        private router: Router) {
 
-    search() { }
+        this.generateFilters();
+    }
+
+    search() {
+        this.router.navigate(['Result',{searchTerm: this.query}]);
+    }
+
     filter() {
-    if (this.query !== ""){
-        this.filteredList = this.countries.filter(function(el){
-            return el.toLowerCase().indexOf(this.query.toLowerCase()) === 0;
-        }.bind(this));
-    }else{
-        this.filteredList = [];
+        if (this.query !== "")
+            this.http.get(this.apiUrl + this.query).map(
+                response => response.json()).subscribe(
+                data => {
+                    this.filteredReactions = data["reactions"];
+                    this.filteredMetabolites = data["metabolites"];
+                });
+        else
+            this.generateFilters();
     }
-}
 
-select(item){
-    this.query = item;
-    this.filteredList = [];
-}
-
-handleClick(event){
-   var clickedComponent = event.target;
-   var inside = false;
-   do {
-       if (clickedComponent === this.elementRef.nativeElement) {
-           inside = true;
-       }
-      clickedComponent = clickedComponent.parentNode;
-   } while (clickedComponent);
-    if(!inside){
-        this.filteredList = [];
+    generateFilters() {
+        this.filteredReactions = new Array<any>();
+        this.filteredMetabolites = new Array<any>();
     }
-}
+
+    select(item) {
+        this.query = item;
+        this.generateFilters();
+    }
+
+    handleClick(event) {
+        var clickedComponent = event.target;
+        var inside = false;
+        do {
+            if (clickedComponent === this.elementRef.nativeElement)
+                inside = true;
+            clickedComponent = clickedComponent.parentNode;
+        } while (clickedComponent);
+
+        if (!inside) this.generateFilters();
+    }
 
 }
