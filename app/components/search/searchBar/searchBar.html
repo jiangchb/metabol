@@ -8,27 +8,10 @@
         background-color: #E3E3E3;
     }
 
-    .container {
+    .container-fluid {
         max-height: 150px;
-        width: 100%;
         overflow-x: hidden;
         overflow-y: auto;
-        position: relative;
-        padding-bottom: 30px;
-    }
-
-    .col-left {
-        height: 100%;
-        width: 50%;
-        position: relative;
-        float: left;
-    }
-
-    .col-right {
-        height: 100%;
-        width: 50%;
-        position: relative;
-        float: right;
     }
 </style>
 
@@ -42,34 +25,43 @@
         </button>
     </span>
 
+
 </div>
 
-<div class="container">
-    <div class="col-left">
+<div class="container-fluid">
 
 
-        <div *ngIf="filteredList.length > 0">
-            <h2>Metabolite</h2>
-            <ul *ngFor="#item of filteredList  " id="change-color-on-mouse-over">
+    <div class="row">
 
-                <li>
-                    <a (click)="select(item)">{{item}}</a>
-                </li>
-            </ul>
+        <div class="col-md-6">
+
+            <div *ngIf="filteredReactions.length > 0">
+                <h2>Reactions</h2>
+                <div *ngFor="#item of filteredReactions; #i=index " id="change-color-on-mouse-over">
+
+                    <div *ngIf="i<10">
+                        <a (click)="select(item.name)">{{item.name}}</a>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-    </div>
+
+        <div class="col-md-6">
+
+            <div *ngIf="filteredMetabolites.length > 0">
+                <h2>Metabolites</h2>
+                <div *ngFor="#item of filteredMetabolites; #i=index " id="change-color-on-mouse-over">
+
+                    <div *ngIf="i<10">
+                        <a (click)="select(item.name)">{{item.name}}</a>
+                    </div>
+
+                </div>
+            </div>
 
 
-    <div class="col-right">
-
-        <div *ngIf="filteredList.length > 0">
-            <h2>Reaction</h2>
-            <ul *ngFor="#item of filteredList " id="change-color-on-mouse-over">
-
-                <li>
-                    <a (click)="select(item)">{{item}}</a>
-                </li>
-            </ul>
         </div>
 
     </div>
