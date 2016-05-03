@@ -1,8 +1,67 @@
+<style>
+    #scrollable-dropdown-menu {
+        max-height: 150px;
+        overflow-y: auto;
+    }
+
+    #change-color-on-mouse-over:hover {
+        background-color: #E3E3E3;
+    }
+
+    .container-fluid {
+        max-height: 150px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+
+
 <div class="input-group">
-    <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Search for...">
+    <input [(ngModel)]=query type="text" class="form-control" placeholder="Search for..." (keyup)=filter()>
+
     <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="search()">
             Search
         </button>
     </span>
+
+
+</div>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div *ngIf="filteredReactions.length > 0">
+                <h2>Reactions</h2>
+                <div *ngFor="#item of filteredReactions; #i=index " id="change-color-on-mouse-over">
+
+                    <div *ngIf="i<10">
+                        <a (click)="select(item.name)">{{item.name}}</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div *ngIf="filteredMetabolites.length > 0">
+                <h2>Metabolites</h2>
+                <div *ngFor="#item of filteredMetabolites; #i=index " id="change-color-on-mouse-over">
+
+                    <div *ngIf="i<10">
+                        <a (click)="select(item.name)">{{item.name}}</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>
