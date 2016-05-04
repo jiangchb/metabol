@@ -17,7 +17,7 @@
 
 
 <div class="input-group">
-    <input [(ngModel)]=query type="text" class="form-control" placeholder="Search for..." (keyup)=filter()>
+    <input [(ngModel)]=query_name type="text" class="form-control" placeholder="Search for..." (keyup)=filter()>
 
     <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="search()">
@@ -40,7 +40,7 @@
                 <div *ngFor="#item of filteredReactions; #i=index " id="change-color-on-mouse-over">
 
                     <div *ngIf="i<10">
-                        <a (click)="select(item.name)">{{item.name}}</a>
+                        <a (click)="select(item.name,item.id)">{{item.name}}</a>
                     </div>
 
                 </div>
@@ -55,7 +55,7 @@
                 <div *ngFor="#item of filteredMetabolites; #i=index " id="change-color-on-mouse-over">
 
                     <div *ngIf="i<10">
-                        <a (click)="select(item.name)">{{item.name}}</a>
+                        <a (click)="select(item.name,item.id)">{{item.name}}</a>
                     </div>
 
                 </div>
