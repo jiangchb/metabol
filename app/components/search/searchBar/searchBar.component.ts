@@ -29,7 +29,7 @@ export class SearchBarComponent {
     }
 
     filter() {
-        if (this.query !== "")
+        if (this.query.length > 2)  //!==
             this.http.get(this.apiUrl + this.query).map(
                 response => response.json()).subscribe(
                 data => {
