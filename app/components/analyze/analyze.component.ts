@@ -3,6 +3,7 @@ import {MeasurementComponent} from './measurement/measurement.component';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ManualComponent} from './manual/manual.component';
 import {UploadComponent} from './upload/upload.component';
+import {FbaResultComponent} from './fbaResult/fbaResult.component';
 
 @Component({
     selector: 'analyze',
@@ -21,6 +22,10 @@ import {UploadComponent} from './upload/upload.component';
     {
         path: '/add-manual-measurement', name: 'Manual',
         component: ManualComponent
+    },
+    {
+        path: '/fba-result', name: 'FbaResult',
+        component: FbaResultComponent
     }
 ])
 export class AnalyzeComponent { }
