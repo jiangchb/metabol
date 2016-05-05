@@ -1,27 +1,19 @@
 import {Injectable} from 'angular2/core';
 import {Reaction} from './reaction';
+import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ReactionService {
-    getReaction() {
-        return REACTION
+    reaction: any[];
+    reactionUrl: string;
+
+    constructor(private http: Http) {
+        this.reactionUrl = 'http://biodb.sehir.edu.tr/api2/reaction/';
+    }
+
+    getReaction(reactionId: string): Observable<Reaction> {
+        return this.http.get(this.reactionUrl + reactionId)
+            .map(response => response.json());
     }
 }
-
-var REACTION: Reaction =
-    {
-        "name": "glyceraldehyde-3-phosphate dehydrogenase",
-        "upper_bound": 1000.0,
-        "lower_bound": -1000.0,
-        "id": "GAPD",
-        "metabolites": {
-            "pi_c": -1.0,
-            "nad_c": -1.0,
-            "g3p_c": -1.0,
-            "h_c": 1.0,
-            "13dpg_c": 1.0,
-            "nadh_c": 1.0
-        },
-        "annotation": { "bigg.reaction": "GAPD" },
-        "gene_reaction_rule": "b1779"
-    };

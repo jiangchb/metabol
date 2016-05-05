@@ -5,21 +5,32 @@
                 <h3 class="panel-title"><strong>{{reaction.name}}</strong></h3>
             </div>
             <div class="panel-body">
-                <p> id: {{reaction.id}} </p>
-                <p> upper_bound: {{reaction.upper_bound}} </p>
-                <p> lower_bound: {{reaction.lower_bound}} </p>
-                <br>
-                <h3><chemical-equation [metabolites]="reaction.metabolites"></chemical-equation></h3>
-                <br>
-
-                <h4><strong>Connected Reactions</strong></h4>
+                <p>
+                  id: {{reaction.id}}
+                </p>
+                <p>
+                  name: {{reaction.name}}
+                </p>
+                <p>
+                  reversible: {{reaction.reversible}}
+                </p>
+                <p>
+                  model: {{reaction.model}}
+                </p>
+                <p>
+                  annotation: {{reaction.annotation}}
+                </p>
+                <p>
+                  sbo term:{{reaction.sboTerm}}
+                </p>
+                <p>
+                  notes: {{reaction.notes}}
+                </p>
+                <h4><strong>Connected Metabolites</strong></h4>
             </div>
             <table class="table table-hover">
                 <tbody>
-                    <tr>
-                        <td>phosphoglycerate kinase</td>
-                        <td><strong><a [routerLink]="['MetaboliteDetails']">13dpg_c</a></strong> + atp_c + adp_c &#8594; 3pg_c</td>
-                    </tr>
+                  
                 </tbody>
             </table>
         </div>

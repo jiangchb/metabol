@@ -1,8 +1,13 @@
 export class Metabolite {
-    name: string;
     id: string;
-    charge: number;
-    formula: string;
+    name: string;
     compartment: string;
-    annotation: { [key: string]: string[] | string };
+    initialAmount: number;
+    charge: number;
+    model: string;
+    species_type: string;
+    annotation: string;
+    sboTerm: string;
+    notes: string;
+    participated_reactions: any[];
 }

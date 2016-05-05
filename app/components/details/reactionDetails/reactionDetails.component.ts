@@ -1,22 +1,31 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {MetaboliteService} from '../../../services/metabolite/metabolite.service';
+import {Component, OnInit} from 'angular2/core';
+import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {ReactionService} from '../../../services/reaction/reaction.service';
 import {ChemicalEquationComponent} from '../chemicalEquation/chemicalEquation.component';
 import {KeysPipe} from '../../../pipes/keys.pipe';
 
 @Component({
-  templateUrl: 'app/components/details/reactionDetails/reactionDetails.html',
-  directives:[ROUTER_DIRECTIVES, ChemicalEquationComponent],
-  pipes: [KeysPipe]
+    templateUrl: 'app/components/details/reactionDetails/reactionDetails.html',
+    directives: [ROUTER_DIRECTIVES, ChemicalEquationComponent],
+    pipes: [KeysPipe]
 })
 
-export class ReactionDetailsComponent {
-  constructor(
-    private _metaboliteService: MetaboliteService,
-    private _reactionService: ReactionService
-  ){};
+export class ReactionDetailsComponent implements OnInit {
+    constructor(
+        private _reactionService: ReactionService,
+        private _routeParams: RouteParams
+        ) { };
 
-  metabolite = this._metaboliteService.getMetabolite();
-  reaction = this._reactionService.getReaction();
+    reaction: any = {};
+
+    ngOnInit() {
+        let reactionId = this._routeParams.get('reactionId');
+        this.getReaction(reactionId);
+    }
+
+    private getReaction(reactionId: string) {
+        this._reactionService.getReaction(reactionId).subscribe(
+            data => this.reaction = data
+            )
+    }
 }

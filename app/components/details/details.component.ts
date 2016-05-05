@@ -10,7 +10,7 @@ import {ReactionDetailsComponent} from './reactionDetails/reactionDetails.compon
 
  })
  @RouteConfig([
-     { path: '/metabolite', name: 'MetaboliteDetails', component: MetaboliteDetailsComponent, useAsDefault: true},
-     { path: '/reaction', name: 'ReactionDetails', component: ReactionDetailsComponent }
+     { path: '/metabolite/:metaboliteId', name: 'MetaboliteDetails', component: MetaboliteDetailsComponent},
+     { path: '/reaction/:reactionId', name: 'ReactionDetails', component: ReactionDetailsComponent }
  ])
 export class DetailsComponent {}
