@@ -10,6 +10,6 @@ import {SearchResultComponent} from './searchResult/searchResult.component';
 })
 @RouteConfig([
     { path: '/page', name: 'Page', component: SearchPageComponent, useAsDefault: true },
-    { path: '/result/:searchTerm', name: 'Result', component: SearchResultComponent }
+    { path: '/result/:searchTerm/:searchTerm2', name: 'Result', component: SearchResultComponent }
 ])
 export class SearchComponent { }

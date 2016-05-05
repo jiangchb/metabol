@@ -13,7 +13,8 @@ import {RouteParams, Router} from 'angular2/router';
 })
 export class SearchBarComponent {
     searchTerm: String;
-    query: String;
+    query_name: String;
+    query_id: String;
     apiUrl = 'http://biodb.sehir.edu.tr/api2/search/';
     filteredMetabolites: Array<any>;
     filteredReactions: Array<any>;
@@ -25,12 +26,15 @@ export class SearchBarComponent {
     }
 
     search() {
-        this.router.navigate(['Result',{searchTerm: this.query}]);
+        this.router.navigate(['Result',
+                {searchTerm:this.query_name,
+                 searchTerm2: this.query_id}]);
+
     }
 
     filter() {
-        if (this.query.length > 2)  //!==
-            this.http.get(this.apiUrl + this.query).map(
+        if (this.query_name.length > 2)  //!==
+            this.http.get(this.apiUrl + this.query_name).map(
                 response => response.json()).subscribe(
                 data => {
                     this.filteredReactions = data["reactions"];
@@ -45,8 +49,9 @@ export class SearchBarComponent {
         this.filteredMetabolites = new Array<any>();
     }
 
-    select(item) {
-        this.query = item;
+    select(item,item2) {
+        this.query_name = item;
+        this.query_id = item2;
         this.generateFilters();
     }
 
