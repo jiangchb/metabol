@@ -1,38 +1,69 @@
 <section class="reactionDetails">
-    <div class="reactionDetailsChild col-md-8 col-md-offset-2">
+    <div *ngIf="reaction" class="reactionDetailsChild col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><strong>{{reaction.name}}</strong></h3>
             </div>
             <div class="panel-body">
-                <p>
-                  id: {{reaction.id}}
+                <p *ngIf="reaction.id">
+                    id: {{reaction.id}}
                 </p>
-                <p>
-                  name: {{reaction.name}}
+                <p *ngIf="reaction.name">
+                    name: {{reaction.name}}
                 </p>
-                <p>
-                  reversible: {{reaction.reversible}}
+                <p *ngIf="reaction.reversible">
+                    reversible: {{reaction.reversible}}
                 </p>
-                <p>
-                  model: {{reaction.model}}
+                <p *ngIf="reaction.model">
+                    model: {{reaction.model}}
                 </p>
-                <p>
-                  annotation: {{reaction.annotation}}
+                <p *ngIf="reaction.annotation">
+                    annotation: {{reaction.annotation}}
                 </p>
-                <p>
-                  sbo term:{{reaction.sboTerm}}
+                <p *ngIf="reaction.sboTerm">
+                    sbo term:{{reaction.sboTerm}}
                 </p>
-                <p>
-                  notes: {{reaction.notes}}
+                <p *ngIf="reaction.notes">
+                    notes: {{reaction.notes}}
                 </p>
-                <h4><strong>Connected Metabolites</strong></h4>
+
+                <div *ngFor="let item3 of reaction|Keys">
+                    <h3 *ngIf="item3 == 'connected_metabolites' ">
+                  <chemical-equation [metabolites]=reaction[item3]></chemical-equation>
+                </h3>
+                </div>
+                <div *ngIf="reaction.connected_metabolites">
+                    <br>
+                    <h4><strong>Connected Reactions</strong></h4>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Metabolite</strong>
+                                </td>
+                                <td>
+                                    <strong>Reactions</strong>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let item of reaction.connected_metabolites">
+                                <td>
+                                    <a [routerLink]="['MetaboliteDetails',{metaboliteId: item.id}]">
+                                  {{item.id}}
+                                </a>
+                                </td>
+                                <td>
+                                    <span *ngFor="let item2 of item.reactions let count = index">
+                                      <a [routerLink]="['ReactionDetails',{reactionId: item2.id}]">
+                                        {{item2.id}}
+                                      </a>
+                                      {{(0!=count)? ", " : ""}}
+                                </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-hover">
-                <tbody>
-                  
-                </tbody>
-            </table>
         </div>
     </div>
 </section>
