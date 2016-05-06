@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {SearchPageComponent} from './searchPage/searchPage.component';
 import {SearchResultComponent} from './searchResult/searchResult.component';
 import {DetailsComponent} from '../details/details.component';
@@ -14,8 +14,8 @@ import {ReactionDetailsComponent} from '../details/reactionDetails/reactionDetai
 
     { path: '/page', name: 'Page', component: SearchPageComponent, useAsDefault: true },
     { path: '/details/...', name: 'Details', component: DetailsComponent },
-    { path: '/details/metabolite/:metaboliteId', name: 'MetaboliteDetails', component: MetaboliteDetailsComponent},
-    { path: '/details/reaction/:reactionId', name: 'ReactionDetails', component: ReactionDetailsComponent }
+    {path: '/metabolite/:metaboliteId', name: 'MetaboliteDetails', component: MetaboliteDetailsComponent},
+    { path: '/details/reaction/:reactionId', name: 'ReactionDetails', component: ReactionDetailsComponent },
 
 ])
 export class SearchComponent { }
