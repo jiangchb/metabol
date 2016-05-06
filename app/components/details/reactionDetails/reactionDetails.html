@@ -53,10 +53,10 @@
                                 </td>
                                 <td>
                                     <span *ngFor="let item2 of item.reactions let count = index">
+                                      {{(0!=count)? ", " : ""}}
                                       <a [routerLink]="['ReactionDetails',{reactionId: item2.id}]">
                                         {{item2.id}}
                                       </a>
-                                      {{(0!=count)? ", " : ""}}
                                 </span>
                                 </td>
                             </tr>
