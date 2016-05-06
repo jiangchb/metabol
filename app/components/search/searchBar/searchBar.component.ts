@@ -14,7 +14,8 @@ import {RouteParams, Router} from 'angular2/router';
 export class SearchBarComponent {
     searchTerm: String;
     query_name: String;
-    query_id: String;
+    query_id_reaction: String;
+    query_id_metabolite: String;
     apiUrl = 'http://biodb.sehir.edu.tr/api2/search/';
     filteredMetabolites: Array<any>;
     filteredReactions: Array<any>;
@@ -26,10 +27,10 @@ export class SearchBarComponent {
     }
 
     search() {
-        this.router.navigate(['Result',
-                {searchTerm:this.query_name,
-                 searchTerm2: this.query_id}]);
-
+        if(this.query_id_reaction.length >0 )
+            this.router.navigate(['ReactionDetails',{reactionId:this.query_id_reaction}]);
+        else
+            this.router.navigate(['MetaboliteDetails',{metaboliteId:this.query_id_metabolite}]);
     }
 
     filter() {
@@ -49,11 +50,18 @@ export class SearchBarComponent {
         this.filteredMetabolites = new Array<any>();
     }
 
-    select(item,item2) {
+    select_reaction(item,item2) {
         this.query_name = item;
-        this.query_id = item2;
+        this.query_id_reaction = item2;
         this.generateFilters();
     }
+
+    select_metabolite(item,item2) {
+        this.query_name = item;
+        this.query_id_metabolite = item2;
+        this.generateFilters();
+    }
+
 
     handleClick(event) {
         var clickedComponent = event.target;
