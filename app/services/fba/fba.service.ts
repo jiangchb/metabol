@@ -28,8 +28,8 @@ export class FbaService {
         this.http.get(this.apiUrl + this.key + '/' + this.currentIteration)
             .map(res => res.json()).subscribe(
             (data: FbaIteration) => {
-                callback(data);
                 this.fbas.push(data);
+                callback(data);
             });
     }
 }

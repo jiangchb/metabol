@@ -1,22 +1,25 @@
+import * as d3 from 'd3';
+
 export interface FbaIteration {
     id: Number;
     fba: Number;
     time: Number;
-    nodes: Array<FbaNode>;
-    links: Array<FbaLink>;
+    Nodes: Array<FbaNode>;
+    Links: Array<FbaLink>;
 }
 
-interface FbaNode {
-    id: Number;
-    name: String;
-    type: String;
-    isBorder: Boolean;
-    concentration: Number;
-    change: String;
+export interface FbaNode extends d3.layout.force.Node {
+    id: number;
+    name: string;
+    type: string;
+    index: number;
+    isBorder?: Boolean;
+    concentration?: Number;
+    change?: String;
 }
 
-interface FbaLink {
-    source: Number;
-    target: Number;
+export interface FbaLink extends d3.layout.force.Link<FbaNode> {
+    source: FbaNode;
+    target: FbaNode;
     role: String;
 }
