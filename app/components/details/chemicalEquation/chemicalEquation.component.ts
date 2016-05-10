@@ -6,36 +6,16 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     selector: 'chemical-equation',
     pipes: [KeysPipe],
     directives:[ROUTER_DIRECTIVES],
-    template: `
-    <ul>
-
-      <li *ngFor="let key of reactants|Keys;  let count = index">
-          {{(0!=count) ? "+" : ""}}
-        <a [routerLink]="['MetaboliteDetails',{metaboliteId: key}]">
-          {{(reactants[key]>1) ? reactants[key] : ""}}{{key}}
-        </a>
-      </li>
-      →
-      <li *ngFor="let key of products|Keys let count = index">
-          {{(0!=count) ? "+" : ""}}
-        <a [routerLink]="['MetaboliteDetails',{metaboliteId: key}]">
-          {{(products[key]>1) ? reactants[key] : ""}}{{key}}
-        </a>
-      </li>
-    </ul>
-    `,
-    styles: [`
-      li {
-      display: inline;
-      }
-      `]
+    templateUrl: 'app/components/details/chemicalEquation/chemicalEquation.html'
 })
 
 export class ChemicalEquationComponent {
     @Input()
     metabolites: any[];
-    reactants = {};
-    products = {};
+    @Input()
+    selectedMetabolite: Object;
+    reactants: Object = {};
+    products: Object = {};
 
     ngOnChanges() {
         this.metabolites.filter((key) => key.stoichiometry > 0)

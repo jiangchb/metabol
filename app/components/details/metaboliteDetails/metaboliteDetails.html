@@ -9,55 +9,68 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <p>
+                <p *ngIf="metabolite.id">
                     id: {{metabolite.id}} {{metaboliteId}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.name">
                     name: {{metabolite.name}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.compartment">
                     compartment: {{metabolite.compartment}}
                 </p>
-                <p>
-                    initial amount: {{metabolite.initialAmaout}}
+                <p *ngIf="metabolite.initialAmount">
+                    initial amount: {{metabolite.initialAmount}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.charge">
                     charge: {{metabolite.charge}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.model">
                     model: {{metabolite.model}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.species_type">
                     species_type: {{metabolite.species_type}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.annotation">
                     annotation: {{metabolite.annotation}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.sboTerm">
                     sbo term: {{metabolite.sboTerm}}
                 </p>
-                <p>
+                <p *ngIf="metabolite.notes">
                     notes: {{metabolite.notes}}
                 </p>
                 <br>
-                <h4>
+                <div *ngIf="metabolite.participated_reactions">
+                    <h4>
                     <strong>Connected Reactions</strong>
                 </h4>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Reaction</strong>
+                                </td>
+                                <td>
+                                    <strong>Chemical Formula</strong>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let item of metabolite.participated_reactions">
+                                <td>
+                                    <a [routerLink]="['ReactionDetails',{reactionId: item.id}]">
+                                      {{item.id}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <chemical-equation [metabolites]="item.metabolites"
+                                      [selectedMetabolite]="{'stoichiometry': item.stoichiometry,
+                                                           'id': metabolite.id }">
+                                    </chemical-equation>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-hover">
-                <tbody>
-                    <tr *ngFor="let item of metabolite.participated_reactions">
-                        <td>
-                            <a [routerLink]="['ReactionDetails',{reactionId: item.id}]">
-                              {{item.id}}
-                            </a>
-                        </td>
-                        <td>
-                            <chemical-equation [metabolites]="item.metabolites"></chemical-equation>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </section>
