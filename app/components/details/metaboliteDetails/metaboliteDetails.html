@@ -54,7 +54,10 @@
                                     <strong>Chemical Formula</strong>
                                 </td>
                             </tr>
-                            <tr *ngFor="let item of metabolite.participated_reactions">
+                            
+
+                            <tr *ngFor="#item of metabolite.participated_reactions">
+
                                 <td>
                                     <a [routerLink]="['ReactionDetails',{reactionId: item.id}]">
                                       {{item.id}}

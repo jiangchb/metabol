@@ -27,7 +27,11 @@
                     notes: {{reaction.notes}}
                 </p>
 
-                <div *ngFor="let item3 of reaction|Keys">
+
+
+
+                <div *ngFor="#item3 of reaction|Keys">
+
                     <h3 *ngIf="item3 == 'connected_metabolites' ">
                   <chemical-equation [metabolites]=reaction[item3]></chemical-equation>
                 </h3>
@@ -45,14 +49,22 @@
                                     <strong>Reactions</strong>
                                 </td>
                             </tr>
-                            <tr *ngFor="let item of reaction.connected_metabolites">
+
+
+
+                            <tr *ngFor="#item of reaction.connected_metabolites">
+
                                 <td>
                                     <a [routerLink]="['MetaboliteDetails',{metaboliteId: item.id}]">
                                   {{item.id}}
                                 </a>
                                 </td>
                                 <td>
-                                    <span *ngFor="let item2 of item.reactions let count = index">
+
+
+
+                                    <span *ngFor="#item2 of item.reactions; #count = index">
+
                                       {{(0!=count)? ", " : ""}}
                                       <a [routerLink]="['ReactionDetails',{reactionId: item2.id}]">
                                         {{item2.id}}
@@ -64,11 +76,14 @@
                     </table>
                 </div>
             </div>
+
             <table class="table table-hover">
                 <tbody>
 
                 </tbody>
             </table>
+
+
 
         </div>
     </div>
