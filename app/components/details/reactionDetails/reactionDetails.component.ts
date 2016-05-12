@@ -17,15 +17,25 @@ export class ReactionDetailsComponent implements OnInit {
         ) { };
 
     reaction: any = {};
+    relatedMetabolites: any = {};
+    relatedMetabolitesResolved: boolean = false;
 
     ngOnInit() {
         let reactionId = this._routeParams.get('reactionId');
         this.getReaction(reactionId);
+        this.getRelatedMetabolites(reactionId);
     }
 
     private getReaction(reactionId: string) {
         this._reactionService.getReaction(reactionId).subscribe(
             data => this.reaction = data
             )
+    }
+    private getRelatedMetabolites(reactionId: string) {
+        this._reactionService.getRelatedMetabolites(reactionId).subscribe(
+            data => this.relatedMetabolites = data
+            )
+        this.relatedMetabolitesResolved = true;
+
     }
 }
