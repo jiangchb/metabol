@@ -1,15 +1,12 @@
 [{
     "name": "A12V",
     "concentration": "Increase Slightly",
-    "exactValue": ""
 }, {
     "name": "SDQ1",
     "concentration": "Increase Dyramaticly",
-    "exactValue": ""
 }, {
     "name": "SDF345",
     "concentration": "Decrease Dyramaticly",
-    "exactValue": ""
 }, {
     "name": "ASD",
     "concentration": "Exact Value",
