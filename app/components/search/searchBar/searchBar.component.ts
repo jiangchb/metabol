@@ -12,7 +12,6 @@ import {RouteParams, Router} from 'angular2/router';
     templateUrl: '/app/components/search/searchBar/searchBar.html',
 })
 export class SearchBarComponent {
-    searchTerm: String;
     query_name: String;
     query_id_reaction: String;
     query_id_metabolite: String;
@@ -24,9 +23,12 @@ export class SearchBarComponent {
         private router: Router) {
 
         this.generateFilters();
+
     }
 
     search() {
+
+
         if(this.query_id_reaction.length >0 )
             this.router.navigate(['ReactionDetails',{reactionId:this.query_id_reaction}]);
         else
@@ -34,6 +36,7 @@ export class SearchBarComponent {
     }
 
     filter() {
+
         if (this.query_name.length > 2)  //!==
             this.http.get(this.apiUrl + this.query_name).map(
                 response => response.json()).subscribe(

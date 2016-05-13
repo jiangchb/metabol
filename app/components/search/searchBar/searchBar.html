@@ -54,7 +54,7 @@
                 <h2>Metabolites</h2>
                 <div *ngFor="#item of filteredMetabolites; #i=index " id="change-color-on-mouse-over">
 
-                    <div *ngIf="i<10">
+                    <div *ngIf="i<10 ">
                         <a (click)="select_metabolite(item.name,item.id)">{{item.name}}</a>
                     </div>
 

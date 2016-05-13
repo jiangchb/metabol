@@ -17,10 +17,12 @@ export class MetaboliteDetailsComponent implements OnInit {
         ) { };
 
     metabolite: any = {};
+    relatedReactions: any = {};
 
     ngOnInit() {
         let metaboliteId = this._routeParams.get('metaboliteId');
         this.getMetabolite(metaboliteId)
+        this.getRelatedReactions(metaboliteId)
     }
 
     private getMetabolite(metaboliteId) {
@@ -28,5 +30,9 @@ export class MetaboliteDetailsComponent implements OnInit {
             data => this.metabolite = data
             )
     }
-
+    private getRelatedReactions(metaboliteId) {
+        this._metaboliteService.getRelatedReactions(metaboliteId).subscribe(
+            data => this.relatedReactions = data
+            )
+    }
 }

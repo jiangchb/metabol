@@ -9,5 +9,7 @@ export class Metabolite {
     annotation: string;
     sboTerm: string;
     notes: string;
+}
+export class RelatedReactions {
     participated_reactions: any[];
 }

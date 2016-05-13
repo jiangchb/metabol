@@ -17,6 +17,8 @@ export class ChemicalEquationComponent {
     reactants: Object = {};
     products: Object = {};
 
+
+    //TODO: check if given data is resolved
     ngOnChanges() {
         this.metabolites.filter((key) => key.stoichiometry > 0)
             .map((key) => this.reactants[key.id] = key.stoichiometry);

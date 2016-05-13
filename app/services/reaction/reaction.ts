@@ -6,5 +6,7 @@ export class Reaction {
     annotation: string;
     sboTerm: string;
     notes: string;
-    connected_metabolites: any[];
+}
+export class ConnectedMetabolites {
+    metabolites: any[];
 }
