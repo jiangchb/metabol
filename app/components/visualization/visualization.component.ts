@@ -1,13 +1,13 @@
 import {Component, Input, EventEmitter, Output, OnChanges, OnInit, ElementRef} from 'angular2/core';
 import {FbaNode, FbaLink} from '../../services/fba/fbaiteration';
 import * as d3 from 'd3';
-
+import {ZoomableDirective} from '../../directives/zoomable.directive';
+// [attr.transform]="'translate('+ translate +')scale('+ scale +')'"
 @Component({
     selector: 'visualization',
     template: `
     <svg width="1000" height="800" >
-    <g [attr.transform]="'translate('+ translate +')scale('+ scale +')'">
-
+    <g mtzoomable>
       <line class="link" *ngFor="#l of d3links"
         [attr.x1]="l.source.x"
         [attr.y1]="l.source.y"
@@ -30,10 +30,11 @@ import * as d3 from 'd3';
     </g>
     </svg>
     `,
+    directives: [ZoomableDirective],
     styleUrls: ['app/components/visualization/visualization.css'],
 
 })
-export class VisualizationComponent implements OnChanges, OnInit {
+export class VisualizationComponent implements OnChanges {
 
     @Input() nodes: Array<FbaNode>;
     @Input() links: Array<FbaLink>;
@@ -43,32 +44,30 @@ export class VisualizationComponent implements OnChanges, OnInit {
     metabolites: Array<FbaNode>;
     d3links: Array<FbaLink>;
     d3nodes: Array<FbaNode>;
-    zoom: d3.behavior.Zoom<any>;
-    scale: number;
-    translate: Array<number>;
+    // zoom: d3.behavior.Zoom<any>;
+    // scale: number;
+    // translate: Array<number>;
 
     constructor(private elementRef: ElementRef) {
         this.force = d3.layout.force<FbaLink, FbaNode>()
             .linkDistance(25)
             .charge(-500)
             .size([1000, 1000]);
-
     }
 
-
-    ngOnInit() {
-        this.zoom = d3.behavior.zoom()
-            .scaleExtent([0.1, 10])
-            .on('zoom', () => this.onZoom());
-
-        d3.select(this.elementRef.nativeElement).select('svg')
-            .call(this.zoom);
-    }
-
-    onZoom() {
-        this.scale = this.zoom.scale();
-        this.translate = this.zoom.translate();
-    }
+    // ngOnInit() {
+    //     this.zoom = d3.behavior.zoom()
+    //         .scaleExtent([0.1, 10])
+    //         .on('zoom', () => this.onZoom());
+    //
+    //     d3.select(this.elementRef.nativeElement).select('svg')
+    //         .call(this.zoom);
+    // }
+    //
+    // onZoom() {
+    //     this.scale = this.zoom.scale();
+    //     this.translate = this.zoom.translate();
+    // }
 
     ngOnChanges() {
         this.force.stop();
