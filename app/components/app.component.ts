@@ -19,8 +19,9 @@ import 'rxjs/Rx';
     },
     { path: '/analyze/...', name: 'Analyze', component: AnalyzeComponent },
     { path: '/details/...', name: 'Details', component: DetailsComponent },
-    { path: '/documentation', name: 'Documentation', component: DocumentationComponent }
-
-
+    {
+        path: '/documentation', name: 'Documentation',
+        component: DocumentationComponent
+    }
 ])
 export class AppComponent { }

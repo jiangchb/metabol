@@ -1,12 +1,11 @@
 <div class="row">
     <div class="col-md-12">
-        <button class="btn btn-default" (click)="analyze()">
-            Next Iteration
+        <visualization [nodes]="nodes" [links]="links" [(isFullScreen)]="isFullScreen"></visualization>
+        <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="previous" (click)="analyze()">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         </button>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-      <visualization [nodes]="nodes" [links]="links"></visualization>
+        <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="next" (click)="analyze()">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </button>
     </div>
 </div>

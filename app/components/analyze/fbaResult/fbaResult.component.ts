@@ -7,6 +7,7 @@ import * as colorization from '../../../modules/colorization';
 @Component({
     selector: 'fba-result',
     templateUrl: '/app/components/analyze/fbaResult/fbaResult.html',
+    styleUrls: ['app/components/analyze/fbaResult/fbaResult.css'],
     directives: [VisualizationComponent]
 })
 export class FbaResultComponent {
@@ -14,6 +15,7 @@ export class FbaResultComponent {
     nodes: FbaNode[];
     links: FbaLink[];
     colorize: colorization.IdenticalByHalf;
+    isFullScreen: Boolean;
 
     constructor(private fba: FbaService) {
         this.colorize = new colorization.IdenticalByHalf();

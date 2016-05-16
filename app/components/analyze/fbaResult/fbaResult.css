@@ -1,0 +1,8 @@
+#next, #previous {
+  position: absolute;
+  bottom: 10px;
+  left:10px;
+}
+#next{
+  margin-left: 50px;
+}
