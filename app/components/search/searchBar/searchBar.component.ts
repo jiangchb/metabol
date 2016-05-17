@@ -18,7 +18,7 @@ export class SearchBarComponent {
     apiUrl = 'http://biodb.sehir.edu.tr/api2/search/';
     filteredMetabolites: Array<any>;
     filteredReactions: Array<any>;
-
+    aa = [{"name":"kl"}];
     constructor(private elementRef: ElementRef, private http: Http,
         private router: Router) {
 
@@ -27,12 +27,17 @@ export class SearchBarComponent {
     }
 
     search() {
+        if (!this.query_name)
+            this.router.navigate(['Page']);
+
+        else if (this.query_id_reaction)
+            this.router.navigate(['ReactionDetails', { reactionId: this.query_id_reaction }]);
 
 
-        if(this.query_id_reaction.length >0 )
-            this.router.navigate(['ReactionDetails',{reactionId:this.query_id_reaction}]);
+        else if (this.query_id_metabolite)
+            this.router.navigate(['MetaboliteDetails', { metaboliteId: this.query_id_metabolite }]);
         else
-            this.router.navigate(['MetaboliteDetails',{metaboliteId:this.query_id_metabolite}]);
+            this.router.navigate(['Result']);
     }
 
     filter() {
@@ -53,15 +58,17 @@ export class SearchBarComponent {
         this.filteredMetabolites = new Array<any>();
     }
 
-    select_reaction(item,item2) {
+    select_reaction(item, item2) {
         this.query_name = item;
         this.query_id_reaction = item2;
+        this.query_id_metabolite = '';
         this.generateFilters();
     }
 
-    select_metabolite(item,item2) {
+    select_metabolite(item, item2) {
         this.query_name = item;
         this.query_id_metabolite = item2;
+        this.query_id_reaction = '';
         this.generateFilters();
     }
 
