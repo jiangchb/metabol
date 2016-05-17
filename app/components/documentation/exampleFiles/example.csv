@@ -1,5 +1,5 @@
-A12V,Increase Slightly,
-SDQ1,Increase Dyramaticly,
-SDF345,Decrease Dyramaticly,
-ASD,Exact Value,12.1
-A234SD,Exact Value,2.23
+A12V,1,
+SDQ1,1,
+SDF345,-2,
+ASD,10,12.1
+A234SD,10,2.23
