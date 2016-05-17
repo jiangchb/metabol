@@ -4,7 +4,7 @@ import {Injectable} from 'angular2/core'
 // TODO: name should be id of metabolite
 export class MetaboliteConcentration {
     name: String;
-    concentration: String;
+    change: Number;
     exactValue: Number;
 }
 

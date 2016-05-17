@@ -6,17 +6,17 @@
         </span>
     </div>
     <div class="form-group">
-        <select class="form-control" [ngFormControl]="form.controls['concentration']">
-            <option value="" disabled selected>Concentration</option>
-            <option *ngFor="#c of concenration" [value]="c">
-                {{ c }}
+        <select class="form-control" [ngFormControl]="form.controls['change']">
+            <option value="" disabled selected>Change</option>
+            <option *ngFor="#c of change| Keys" [value]="c">
+                {{ change[c] }}
             </option>
         </select>
-        <span class="text-danger" *ngIf="!form.controls['concentration'].valid && form.controls['concentration'].dirty">
+        <span class="text-danger" *ngIf="!form.controls['change'].valid && form.controls['change'].dirty">
             Field Required
         </span>
     </div>
-    <div class="form-group" *ngIf="form.controls['concentration'].value == 'Exact Value'">
+    <div class="form-group" *ngIf="form.controls['change'].value == 10">
         <input type="text" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
         <span class="text-danger" *ngIf="form.errors?.exactValueEmpty && form.controls['value'].dirty">
             Field Required
@@ -31,7 +31,7 @@
             <thead>
                 <tr>
                     <th>Metabolite Name</th>
-                    <th>Concentration</th>
+                    <th>Change</th>
                     <th>Exact Value</th>
                     <th></th>
                 </tr>
@@ -48,17 +48,17 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <select class="form-control" [ngFormControl]="form.controls['concentration']">
-                                <option value="" disabled selected>Concentration</option>
-                                <option *ngFor="#c of concenration" [value]="c">
-                                    {{ c }}
+                            <select class="form-control" [ngFormControl]="form.controls['change']">
+                                <option value="" disabled selected>Change</option>
+                                <option *ngFor="#c of change | Keys" [value]="c">
+                                    {{ change[c] }}
                                 </option>
                             </select>
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
-                            <input type="text" [disabled]="form.controls['concentration'].value != 'Exact Value'" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
+                            <input type="text" [disabled]="form.controls['change'].value != 10" class="form-control" placeholder="Value" [ngFormControl]="form.controls['value']">
                             <span class="text-danger" *ngIf="form.errors?.exactValueEmpty && form.controls['value'].dirty">
                                 Field Required
                             </span>
@@ -70,7 +70,7 @@
                 </tr>
                 <tr *ngFor="#c of conTable;#i=index">
                     <td>{{ c.name }}</td>
-                    <td>{{ c.concentration }}</td>
+                    <td>{{ change[c.change]  }}</td>
                     <td>{{ c.exactValue || '-' }}</td>
                     <td>
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="remove(i)"></span>

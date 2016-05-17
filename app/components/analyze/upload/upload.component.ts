@@ -42,7 +42,7 @@ export class UploadComponent {
                 let c = i.split(',');
                 this.conTable.push({
                     name: c[0],
-                    concentration: c[1],
+                    change: c[1],
                     exactValue: c[2]
                 });
             }
