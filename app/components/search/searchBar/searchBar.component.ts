@@ -18,7 +18,7 @@ export class SearchBarComponent {
     apiUrl = 'http://biodb.sehir.edu.tr/api2/search/';
     filteredMetabolites: Array<any>;
     filteredReactions: Array<any>;
-    aa = [{"name":"kl"}];
+
     constructor(private elementRef: ElementRef, private http: Http,
         private router: Router) {
 
@@ -37,10 +37,13 @@ export class SearchBarComponent {
         else if (this.query_id_metabolite)
             this.router.navigate(['MetaboliteDetails', { metaboliteId: this.query_id_metabolite }]);
         else
-            this.router.navigate(['Result']);
+            this.router.navigate(['Result', { resultName: this.query_name }]);
+            this.query_name="";//To delete input if input is same
+            this.filteredReactions = [];//To close autocomplete if input is same
+            this.filteredMetabolites = [];//To close autocomplete if input is same
     }
 
-    filter() {
+    filter() { //This function search in api
 
         if (this.query_name.length > 2)  //!==
             this.http.get(this.apiUrl + this.query_name).map(
@@ -73,7 +76,7 @@ export class SearchBarComponent {
     }
 
 
-    handleClick(event) {
+    handleClick(event) { //This function closes the autocomplete when click anywhere
         var clickedComponent = event.target;
         var inside = false;
         do {

@@ -13,7 +13,7 @@ import {ReactionDetailsComponent} from '../details/reactionDetails/reactionDetai
 @RouteConfig([
 
     { path: '/page', name: 'Page', component: SearchPageComponent, useAsDefault: true },
-    { path: '/result', name: 'Result', component: SearchResultComponent},
+    { path: '/result/:resultName', name: 'Result', component: SearchResultComponent},
     { path: '/details/...', name: 'Details', component: DetailsComponent },
     {path: '/details/metabolite/:metaboliteId', name: 'MetaboliteDetails', component: MetaboliteDetailsComponent},
     { path: '/details/reaction/:reactionId', name: 'ReactionDetails', component: ReactionDetailsComponent }

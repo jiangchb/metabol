@@ -6,14 +6,61 @@
     </div>
 </section>
 
-<div class="container-fluid">
+
+<div class="container-fluid" *ngIf="filteredReactions && filteredMetabolites">
 
 
+    <div class="row">
+        <div>
 
-    <div class="row" *ngFor="#item of aa; #i=index " >
-        <li>
-                {{item.name}}
-        </li>
+
+            <div class="col-md-6">
+
+                <div>
+                    <h2>Reactions</h2>
+
+                    <div *ngFor="#item of filteredReactions; #i=index ">
+
+                        <a>
+                            <li [routerLink]="['ReactionDetails', { reactionId:item.id}]">
+                                {{item.name}}
+                            </li>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div>
+                    <h2>Metabolites</h2>
+                    <div *ngFor="#item of filteredMetabolites; #i=index " id="change-color-on-mouse-over">
+
+                        <a>
+                            <li [routerLink]="['MetaboliteDetails', { metaboliteId:item.id}]">
+                                {{item.name}}
+                            </li>
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
     </div>
+</div>
+<div class="container-fluid" *ngIf="!filteredReactions && !filteredMetabolites">
+
+    <div>
+
+        <h1>NOTHING FOUND</h1>
+
+    </div>
+
 
 </div>
