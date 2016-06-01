@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core'
 import {Http} from 'angular2/http';
 import {FbaIteration} from './fbaiteration';
+import {MetaboliteConcentration} from '../analyze/analyze.service';
 
 @Injectable()
 export class FbaService {
@@ -12,14 +13,22 @@ export class FbaService {
     constructor(private http: Http) {
         this.currentIteration = 0;
         this.fbas = new Array<FbaIteration>();
-        this.startFba();
     }
 
-    private startFba() {
+    startFba() {
         this.http.get(this.apiUrl + 'start')
             .map(res => res.json()).subscribe(
             (data) => {
                 this.key = data['key'];
+            });
+    }
+
+    startFbaWithData(data: Array<MetaboliteConcentration>) {
+        this.http.post(this.apiUrl + 'start', JSON.stringify(data))
+            .map((res) => res.json).subscribe(
+            (data) => {
+                this.key = data['key'];
+                console.log(this.key);
             });
     }
 
