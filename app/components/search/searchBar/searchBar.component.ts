@@ -27,15 +27,23 @@ export class SearchBarComponent {
     }
 
     search() {
+        if (!this.query_name)
+            this.router.navigate(['Page']);
+
+        else if (this.query_id_reaction)
+            this.router.navigate(['ReactionDetails', { reactionId: this.query_id_reaction }]);
 
 
-        if(this.query_id_reaction.length >0 )
-            this.router.navigate(['ReactionDetails',{reactionId:this.query_id_reaction}]);
+        else if (this.query_id_metabolite)
+            this.router.navigate(['MetaboliteDetails', { metaboliteId: this.query_id_metabolite }]);
         else
-            this.router.navigate(['MetaboliteDetails',{metaboliteId:this.query_id_metabolite}]);
+            this.router.navigate(['Result', { resultName: this.query_name }]);
+            this.query_name="";//To delete input if input is same
+            this.filteredReactions = [];//To close autocomplete if input is same
+            this.filteredMetabolites = [];//To close autocomplete if input is same
     }
 
-    filter() {
+    filter() { //This function search in api
 
         if (this.query_name.length > 2)  //!==
             this.http.get(this.apiUrl + this.query_name).map(
@@ -53,20 +61,22 @@ export class SearchBarComponent {
         this.filteredMetabolites = new Array<any>();
     }
 
-    select_reaction(item,item2) {
+    select_reaction(item, item2) {
         this.query_name = item;
         this.query_id_reaction = item2;
+        this.query_id_metabolite = '';
         this.generateFilters();
     }
 
-    select_metabolite(item,item2) {
+    select_metabolite(item, item2) {
         this.query_name = item;
         this.query_id_metabolite = item2;
+        this.query_id_reaction = '';
         this.generateFilters();
     }
 
 
-    handleClick(event) {
+    handleClick(event) { //This function closes the autocomplete when click anywhere
         var clickedComponent = event.target;
         var inside = false;
         do {
