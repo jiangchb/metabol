@@ -9,7 +9,7 @@
 </span>
 
 
-<span *ngFor="#key of reactants|Keys;  #count = index">
+<span *ngFor="let key of reactants|Keys;  let count = index">
 
     {{( selectedMetabolite ? (0!=count || selectedMetabolite.stoichiometry>0) : 0!=count)? "+" : ""}}
   <a [routerLink]="['MetaboliteDetails',{metaboliteId: key}]">
@@ -30,7 +30,7 @@
 </span>
 
 
-<span *ngFor="#key of products|Keys; #count = index">
+<span *ngFor="let key of products|Keys; let count = index">
 
     {{( selectedMetabolite ? (0!=count || selectedMetabolite.stoichiometry<0) : 0!=count) ? "+" : ""}}
   <a [routerLink]="['MetaboliteDetails',{metaboliteId: key}]">

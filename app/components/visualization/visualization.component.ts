@@ -11,23 +11,23 @@ import * as d3 from 'd3';
 
       <g [attr.transform]="'translate('+ translate +')scale('+ scale +')'">
 
-        <line class="link" *ngFor="#l of d3links"
+        <line class="link" *ngFor="let l of d3links"
           [attr.x1]="l.source.x"
           [attr.y1]="l.source.y"
           [attr.x2]="l.target.x"
           [attr.y2]="l.target.y"></line>
 
-        <circle class="metabolite" r="10" *ngFor="#d of metabolites"
+        <circle class="metabolite" r="10" *ngFor="let d of metabolites"
           [attr.cx]="d.x"
           [attr.cy]="d.y"
           [attr.fill]="d.color"></circle>
 
-        <rect class="reaction" width="20" height="20" *ngFor="#d of reactions"
+        <rect class="reaction" width="20" height="20" *ngFor="let d of reactions"
           [attr.x]="d.x - 10"
           [attr.y]="d.y - 10"
           [attr.fill]="d.color"></rect>
 
-        <text class="text" *ngFor="#d of d3nodes"
+        <text class="text" *ngFor="let d of d3nodes"
           [attr.x]="d.x - 15"
           [attr.y]="d.y - 15">{{ d.name }}</text>
       </g>
