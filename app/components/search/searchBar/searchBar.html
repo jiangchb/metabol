@@ -37,7 +37,7 @@
 
             <div *ngIf="filteredReactions.length > 0">
                 <h2>Reactions</h2>
-                <div *ngFor="#item of filteredReactions; #i=index " id="change-color-on-mouse-over">
+                <div *ngFor="let item of filteredReactions; let i=index " id="change-color-on-mouse-over">
 
                     <div *ngIf="i<10">
                         <a (click)="select_reaction(item.name,item.id)">{{item.name}}</a>
@@ -52,7 +52,7 @@
 
             <div *ngIf="filteredMetabolites.length > 0">
                 <h2>Metabolites</h2>
-                <div *ngFor="#item of filteredMetabolites; #i=index " id="change-color-on-mouse-over">
+                <div *ngFor="let item of filteredMetabolites; let i=index " id="change-color-on-mouse-over">
 
                     <div *ngIf="i<10 ">
                         <a (click)="select_metabolite(item.name,item.id)">{{item.name}}</a>
