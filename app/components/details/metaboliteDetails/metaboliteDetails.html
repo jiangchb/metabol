@@ -56,7 +56,7 @@
                             </tr>
 
 
-                            <tr *ngFor="#item of relatedReactions.reactions">
+                            <tr *ngFor="let item of relatedReactions.reactions">
 
                                 <td>
                                     <a [routerLink]="['ReactionDetails',{reactionId: item.id}]">

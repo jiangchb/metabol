@@ -48,7 +48,7 @@
 
 
 
-                            <tr *ngFor="#item of relatedMetabolites.metabolites">
+                            <tr *ngFor="let item of relatedMetabolites.metabolites">
 
                                 <td>
                                     <a [routerLink]="['MetaboliteDetails',{metaboliteId: item.id}]">
@@ -59,7 +59,7 @@
 
 
 
-                                    <span *ngFor="#item2 of item.reactions; #count = index">
+                                    <span *ngFor="let item2 of item.reactions; let count = index">
 
                                       {{(0!=count)? ", " : ""}}
                                       <a [routerLink]="['ReactionDetails',{reactionId: item2.id}]">

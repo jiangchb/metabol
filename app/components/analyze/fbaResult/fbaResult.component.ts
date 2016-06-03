@@ -21,6 +21,7 @@ export class FbaResultComponent {
         this.colorize = new colorization.IdenticalByHalf();
         this.nodes = new Array<FbaNode>();
         this.links = new Array<FbaLink>();
+        this.fba.startFba();
     }
 
     analyze() {
