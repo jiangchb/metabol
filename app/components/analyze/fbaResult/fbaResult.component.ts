@@ -3,6 +3,7 @@ import {FbaService} from '../../../services/fba/fba.service';
 import {FbaIteration, FbaNode, FbaLink} from '../../../services/fba/fbaiteration';
 import {VisualizationComponent} from '../../visualization/visualization.component';
 import * as colorization from '../../../modules/colorization';
+import {RouteParams} from 'angular2/router';
 
 @Component({
     selector: 'fba-result',
@@ -17,11 +18,11 @@ export class FbaResultComponent {
     colorize: colorization.IdenticalByHalf;
     isFullScreen: Boolean;
 
-    constructor(private fba: FbaService) {
+    constructor(private fba: FbaService, params: RouteParams) {
         this.colorize = new colorization.IdenticalByHalf();
         this.nodes = new Array<FbaNode>();
         this.links = new Array<FbaLink>();
-        this.fba.startFba();
+        this.fba.startFba(params.get('fbaKey'));
     }
 
     analyze() {

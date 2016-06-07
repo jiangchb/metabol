@@ -2,6 +2,9 @@ import {Component, Input} from 'angular2/core';
 import {MetaboliteConcentration} from '../../../services/analyze/analyze.service';
 import {Control, FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {KeysPipe} from '../../../pipes/keys.pipe';
+import {FbaService} from '../../../services/fba/fba.service';
+import {RouteParams, Router} from 'angular2/router';
+
 @Component({
     selector: 'concentration-table',
     templateUrl: '/app/components/analyze/concentrationTable/concentrationTable.html',
@@ -21,7 +24,7 @@ export class ConcentrationTableComponent {
 
     form: ControlGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private fba: FbaService, private router: Router) {
         this.form = this.createForm();
     }
 
@@ -51,5 +54,10 @@ export class ConcentrationTableComponent {
         c.exactValue = value['value'];
         this.conTable.push(c);
         this.form = this.createForm();
+    }
+
+    analyze() {
+        this.fba.getFbaKeyForData(this.conTable,
+            (key) => this.router.navigate(['FbaResult', { 'fbaKey': key }]));
     }
 }

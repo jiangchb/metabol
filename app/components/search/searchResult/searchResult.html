@@ -1,66 +1,43 @@
 <section>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-1">
-            <search-bar></search-bar>
-        </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <search-bar></search-bar>
     </div>
+  </div>
 </section>
-
-
 <div class="container-fluid" *ngIf="filteredReactions && filteredMetabolites">
-
-
-    <div class="row">
-        <div>
-
-
-            <div class="col-md-6">
-
-                <div>
-                    <h2>Reactions</h2>
-
-                    <div *ngFor="let item of filteredReactions; let i=index ">
-
-                        <a>
-                            <li [routerLink]="['ReactionDetails', { reactionId:item.id}]">
-                                {{item.name}}
-                            </li>
-                        </a>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-6">
-
-                <div>
-                    <h2>Metabolites</h2>
-                    <div *ngFor="let item of filteredMetabolites; let i=index " id="change-color-on-mouse-over">
-
-                        <a>
-                            <li [routerLink]="['MetaboliteDetails', { metaboliteId:item.id}]">
-                                {{item.name}}
-                            </li>
-                        </a>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-    </div>
-</div>
-<div class="container-fluid" *ngIf="!filteredReactions && !filteredMetabolites">
-
+  <div class="row">
     <div>
-
-        <h1>NOTHING FOUND</h1>
-
+      <div class="col-md-6">
+        <div>
+          <h2>Reactions</h2>
+          <div *ngFor="let item of filteredReactions; let i=index ">
+            <a>
+              <li [routerLink]="['ReactionDetails', { reactionId:item.id}]">
+                {{item.name}}
+              </li>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <h2>Metabolites</h2>
+          <div *ngFor="let item of filteredMetabolites; let i=index " id="change-color-on-mouse-over">
+            <a>
+              <li [routerLink]="['MetaboliteDetails', { metaboliteId:item.id}]">
+                {{item.name}}
+              </li>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
-
+<div class="container-fluid" *ngIf="!filteredReactions && !filteredMetabolites">
+  <div>
+    <h1>NOTHING FOUND</h1>
+  </div>
 </div>
