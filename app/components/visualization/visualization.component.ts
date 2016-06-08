@@ -1,16 +1,13 @@
 import {Component, Input, EventEmitter, Output, OnChanges, OnInit, ElementRef} from 'angular2/core';
 import {FbaNode, FbaLink} from '../../services/fba/fbaiteration';
+import {FullScreenableSvgComponent} from '../fullScreenableSvg/fullScreenableSvg.component';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'visualization',
     template: `
-    <svg (window:resize)="onResize()"
-         [class.small-size]="!isFullScreen"
-         [class.full-screen]="isFullScreen">
-
+    <full-screenable-svg [(isFullScreen)]="isFullScreen" (window:resize)="onResize()">
       <g [attr.transform]="'translate('+ translate +')scale('+ scale +')'">
-
         <line class="link" *ngFor="let l of d3links"
           [attr.x1]="l.source.x"
           [attr.y1]="l.source.y"
@@ -35,18 +32,10 @@ import * as d3 from 'd3';
           [attr.x]="d.x - 15"
           [attr.y]="d.y - 15">{{ d.name }}</text>
       </g>
-    </svg>
-
-    <button id="resize-full" class="btn btn-default"
-      (click)="toggleFullScreen()"
-      [style.position]="isFullScreen ? 'fixed' :'absolute'">
-        <span *ngIf="!isFullScreen" class="glyphicon glyphicon-resize-full"
-          aria-hidden="true"> </span>
-        <span *ngIf="isFullScreen" class="glyphicon glyphicon-resize-small"
-          aria-hidden="true"> </span>
-    </button>
+    </full-screenable-svg>
     `,
     styleUrls: ['app/components/visualization/visualization.css'],
+    directives: [FullScreenableSvgComponent]
 
 })
 export class VisualizationComponent implements OnChanges, OnInit {
@@ -68,7 +57,6 @@ export class VisualizationComponent implements OnChanges, OnInit {
     @Output() isFullScreenChange: EventEmitter<Boolean>;
 
     constructor(private elementRef: ElementRef) {
-        this.isFullScreen = this.isFullScreen || false;
         this.scale = 1;
         this.translate = [1, 1];
         this.isFullScreenChange = new EventEmitter<Boolean>();
@@ -98,6 +86,12 @@ export class VisualizationComponent implements OnChanges, OnInit {
             .call(this.zoom);
     }
 
+    ngOnChanges() {
+        this.force.stop();
+        this.force.nodes(this.nodes).links(this.links);
+        this.force.start();
+    }
+
     onZoom() {
         this.scale = this.zoom.scale();
         this.translate = this.zoom.translate();
@@ -105,25 +99,12 @@ export class VisualizationComponent implements OnChanges, OnInit {
 
     getSizeOfSvg(): [number, number] {
         let sizes = document.getElementsByTagName("svg")[0].getBoundingClientRect();
-        return [
-            sizes.width,
-            sizes.height
-        ];
+        console.log(sizes);
+        return [sizes.width, sizes.height];
     }
 
     onResize() {
         this.force.size(this.getSizeOfSvg());
         this.force.start();
-    }
-
-    ngOnChanges() {
-        this.force.stop();
-        this.force.nodes(this.nodes).links(this.links);
-        this.force.start();
-    }
-
-    toggleFullScreen() {
-        this.isFullScreen = !this.isFullScreen;
-        this.isFullScreenChange.emit(this.isFullScreen);
     }
 }
