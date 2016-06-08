@@ -28,13 +28,18 @@ import * as d3 from 'd3';
           [attr.fill]="d.color"></rect>
 
         <text class="text" *ngFor="let d of d3nodes"
+          [attr.x]="d.x - 8"
+          [attr.y]="d.y + 5">{{ d.iteration }}</text>
+
+        <text class="text" *ngFor="let d of d3nodes"
           [attr.x]="d.x - 15"
           [attr.y]="d.y - 15">{{ d.name }}</text>
       </g>
     </svg>
 
-    <button (click)="toggleFullScreen()" class="btn btn-default"
-      id="resize-full" [style.position]="isFullScreen ? 'fixed' :'absolute'">
+    <button id="resize-full" class="btn btn-default"
+      (click)="toggleFullScreen()"
+      [style.position]="isFullScreen ? 'fixed' :'absolute'">
         <span *ngIf="!isFullScreen" class="glyphicon glyphicon-resize-full"
           aria-hidden="true"> </span>
         <span *ngIf="isFullScreen" class="glyphicon glyphicon-resize-small"
@@ -66,7 +71,7 @@ export class VisualizationComponent implements OnChanges, OnInit {
         this.isFullScreen = this.isFullScreen || false;
         this.scale = 1;
         this.translate = [1, 1];
-        this.isFullScreenChange = new EventEmitter();
+        this.isFullScreenChange = new EventEmitter<Boolean>();
 
         this.force = d3.layout.force<FbaLink, FbaNode>()
             .linkDistance(25)
@@ -74,14 +79,14 @@ export class VisualizationComponent implements OnChanges, OnInit {
             .size([1000, 400])
             .on('tick', () => {
 
-            this.reactions = this.force.nodes().filter(
-                (x) => x['type'] == 'r');
-            this.metabolites = this.force.nodes().filter(
-                (x) => x['type'] == 'm');
+                this.reactions = this.force.nodes().filter(
+                    (x) => x['type'] == 'r');
+                this.metabolites = this.force.nodes().filter(
+                    (x) => x['type'] == 'm');
 
-            this.d3links = this.force.links();
-            this.d3nodes = this.force.nodes();
-        });
+                this.d3links = this.force.links();
+                this.d3nodes = this.force.nodes();
+            });
     }
 
 
