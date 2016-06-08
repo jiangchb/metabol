@@ -1,68 +1,55 @@
 <style>
-    #scrollable-dropdown-menu {
-        max-height: 150px;
-        overflow-y: auto;
-    }
+  #scrollable-dropdown-menu {
+    max-height: 150px;
+    overflow-y: auto;
+  }
 
-    #change-color-on-mouse-over:hover {
-        background-color: #E3E3E3;
-    }
+  #change-color-on-mouse-over:hover {
+    background-color: #E3E3E3;
+  }
 
-    .container-fluid {
-        max-height: 150px;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+  .container-fluid {
+    max-height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 </style>
 
 
-<div class="input-group" >
-    <input [(ngModel)]=query_name type="text" class="form-control" placeholder="Search for..." (keyup)=filter()>
-
-    <span class="input-group-btn" >
+<div class="input-group">
+  <input [(ngModel)]=query_name type="text" class="form-control" placeholder="Search for..." (keyup)=filter()>
+  <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="search()">
             Search
         </button>
     </span>
-
-
 </div>
 
 <div class="container-fluid">
+  <div class="row">
 
-
-    <div class="row">
-
-        <div class="col-md-6">
-
-            <div *ngIf="filteredReactions.length > 0">
-                <h2>Reactions</h2>
-                <div *ngFor="let item of filteredReactions; let i=index " id="change-color-on-mouse-over">
-
-                    <div *ngIf="i<10">
-                        <a (click)="select_reaction(item.name,item.id)"><li>{{item.name}}</li></a>
-                    </div>
-
-                </div>
-            </div>
-
+    <div class="col-md-6">
+      <div *ngIf="filteredReactions.length > 0">
+        <h2>Reactions</h2>
+        <div *ngFor="let r of filteredReactions" id="change-color-on-mouse-over">
+          <a (click)="selectSearch(r)">
+            <li>{{ r }}</li>
+          </a>
         </div>
-
-        <div class="col-md-6">
-
-            <div *ngIf="filteredMetabolites.length > 0">
-                <h2>Metabolites</h2>
-                <div *ngFor="let item of filteredMetabolites; let i=index " id="change-color-on-mouse-over">
-
-                    <div *ngIf="i<10 ">
-                        <a (click)="select_metabolite(item.name,item.id)"><li>{{item.name}}</li></a>
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-
+      </div>
     </div>
+
+
+    <div class="col-md-6">
+      <div *ngIf="filteredMetabolites.length > 0">
+        <h2>Metabolites</h2>
+        <div *ngFor="let m of filteredMetabolites" id="change-color-on-mouse-over">
+          <a (click)="selectSearch(m)">
+            <li>{{ m }}</li>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
