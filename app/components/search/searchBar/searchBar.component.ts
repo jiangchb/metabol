@@ -40,7 +40,6 @@ export class SearchBarComponent {
             this.http.get(this.apiUrl + this.query_name).map(
                 response => response.json()).subscribe(
                 data => {
-                    console.log(data);
                     this.filteredReactions = data["reactions"];
                     this.filteredMetabolites = data["metabolites"];
                 });
