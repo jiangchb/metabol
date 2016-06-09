@@ -5,11 +5,13 @@ import {VisualizationComponent} from '../../visualization/visualization.componen
 import * as colorization from '../../../modules/colorization';
 import {RouteParams} from 'angular2/router';
 import {IterationColorBox} from './iterationColorBox/iterationColorBox.component';
+import {FbaTextResult} from './fbaTextResult/fbaTextResult.component';
+
 @Component({
     selector: 'fba-result',
     templateUrl: '/app/components/analyze/fbaResult/fbaResult.html',
     styleUrls: ['app/components/analyze/fbaResult/fbaResult.css'],
-    directives: [VisualizationComponent, IterationColorBox]
+    directives: [VisualizationComponent, IterationColorBox, FbaTextResult]
 })
 export class FbaResultComponent {
 
@@ -29,7 +31,7 @@ export class FbaResultComponent {
         this.currentIteration = 0;
     }
 
-    analyze() {
+    next() {
         this.fba.getNextIteration(
             (data) => {
                 let colorOfIteration = this.colorize.next();
@@ -42,5 +44,9 @@ export class FbaResultComponent {
                 this.nodes = this.nodes.concat(data.Nodes);
                 this.links = this.links.concat(data.Links);
             });
+    }
+
+    previous() {
+        this.currentIteration--;
     }
 }
