@@ -12,31 +12,22 @@ import {Reaction} from '../../../services/reaction/reaction';
 })
 
 export class ReactionDetailsComponent implements OnInit {
-    constructor(
-        private _reactionService: ReactionService,
-        private _routeParams: RouteParams
-    ) { };
 
     reaction: Reaction;
-    relatedMetabolites: any = {};
-    relatedMetabolitesResolved: boolean = false;
+    relatedMetabolites: Array<any>;
+
+    constructor(private rea: ReactionService, private route: RouteParams) {
+        this.reaction = new Reaction();
+        this.relatedMetabolites = new Array<any>();
+    };
 
     ngOnInit() {
-        let reactionId = this._routeParams.get('reactionId');
-        this.getReaction(reactionId);
-        this.getRelatedMetabolites(reactionId);
-    }
+        let reactionId = this.route.get('reactionId');
 
-    getReaction(reactionId: string) {
-        this._reactionService.getReaction(reactionId,
+        this.rea.getReaction(reactionId,
             (data) => this.reaction = data);
-    }
 
-    getRelatedMetabolites(reactionId: string) {
-        this._reactionService.getRelatedMetabolites(reactionId).subscribe(
-            data => this.relatedMetabolites = data
-        )
-        this.relatedMetabolitesResolved = true;
-
+        this.rea.getRelatedMetabolites(reactionId,
+            (data) => this.relatedMetabolites = data);
     }
 }

@@ -19,7 +19,7 @@
       <h2>Reactions <small>- {{filteredReactions.length}} Result Found</small></h2>
       <p *ngFor="let item of filteredReactions; let i=index " >
         <a  [routerLink]="['ReactionDetails', { reactionId:item.id}]">
-          {{item.name}}
+          {{item.id}}
       </a>
       </p>
     </div>
