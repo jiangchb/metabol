@@ -16,6 +16,7 @@ export class SearchBarComponent {
     apiUrl = 'http://biodb.sehir.edu.tr/api2/searchprefix/';
     filteredMetabolites: Array<any>;
     filteredReactions: Array<any>;
+    
 
     constructor(private elementRef: ElementRef, private http: Http,
         private router: Router) {
@@ -36,7 +37,7 @@ export class SearchBarComponent {
 
     filter() { //This function search in api
 
-        if (this.query_name.length > 2)  //!==
+        if (this.query_name.length )  //!==
             this.http.get(this.apiUrl + this.query_name).map(
                 response => response.json()).subscribe(
                 data => {
