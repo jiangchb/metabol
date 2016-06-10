@@ -13,13 +13,15 @@ export class ReactionService {
         this.relatedMetabolitesUrl = "http://biodb.sehir.edu.tr/api2/relatedmetabolites/"
     }
 
-    getReaction(reactionId: string): Observable<Reaction> {
+    getReaction(reactionId: string, callback: (reaction: Reaction) => void) {
         return this.http.get(this.reactionUrl + reactionId)
-            .map(response => response.json());
+            .map(response => response.json())
+            .subscribe((data: Reaction) => callback(data));
     }
 
+
     getRelatedMetabolites(reactionId: string): Observable<ConnectedMetabolites> {
-      return this.http.get(this.relatedMetabolitesUrl + reactionId)
-          .map(response => response.json());
+        return this.http.get(this.relatedMetabolitesUrl + reactionId)
+            .map(response => response.json());
     }
 }

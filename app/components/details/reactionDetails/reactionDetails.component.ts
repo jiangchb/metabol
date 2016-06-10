@@ -3,6 +3,7 @@ import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {ReactionService} from '../../../services/reaction/reaction.service';
 import {ChemicalEquationComponent} from '../chemicalEquation/chemicalEquation.component';
 import {KeysPipe} from '../../../pipes/keys.pipe';
+import {Reaction} from '../../../services/reaction/reaction';
 
 @Component({
     templateUrl: 'app/components/details/reactionDetails/reactionDetails.html',
@@ -14,9 +15,9 @@ export class ReactionDetailsComponent implements OnInit {
     constructor(
         private _reactionService: ReactionService,
         private _routeParams: RouteParams
-        ) { };
+    ) { };
 
-    reaction: any = {};
+    reaction: Reaction;
     relatedMetabolites: any = {};
     relatedMetabolitesResolved: boolean = false;
 
@@ -26,15 +27,15 @@ export class ReactionDetailsComponent implements OnInit {
         this.getRelatedMetabolites(reactionId);
     }
 
-    private getReaction(reactionId: string) {
-        this._reactionService.getReaction(reactionId).subscribe(
-            data => this.reaction = data
-            )
+    getReaction(reactionId: string) {
+        this._reactionService.getReaction(reactionId,
+            (data) => this.reaction = data);
     }
-    private getRelatedMetabolites(reactionId: string) {
+
+    getRelatedMetabolites(reactionId: string) {
         this._reactionService.getRelatedMetabolites(reactionId).subscribe(
             data => this.relatedMetabolites = data
-            )
+        )
         this.relatedMetabolitesResolved = true;
 
     }

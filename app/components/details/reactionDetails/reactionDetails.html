@@ -5,25 +5,25 @@
                 <h3 class="panel-title"><strong>{{reaction.name}}</strong></h3>
             </div>
             <div class="panel-body">
-                <p *ngIf="reaction.id">
+                <p [hidden]="!reaction.id">
                     id: {{reaction.id}}
                 </p>
-                <p *ngIf="reaction.name">
+                <p [hidden]="!reaction.name">
                     name: {{reaction.name}}
                 </p>
-                <p *ngIf="reaction.reversible">
+                <p [hidden]="!reaction.reversible">
                     reversible: {{reaction.reversible}}
                 </p>
-                <p *ngIf="reaction.model">
+                <p [hidden]="!reaction.model">
                     model: {{reaction.model}}
                 </p>
-                <p *ngIf="reaction.annotation">
+                <p [hidden]="!reaction.annotation">
                     annotation: {{reaction.annotation}}
                 </p>
-                <p *ngIf="reaction.sboTerm">
+                <p [hidden]="!reaction.sboTerm">
                     sbo term:{{reaction.sboTerm}}
                 </p>
-                <p *ngIf="reaction.notes">
+                <p [hidden]="!reaction.notes">
                     notes: {{reaction.notes}}
                 </p>
 
