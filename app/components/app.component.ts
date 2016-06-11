@@ -5,6 +5,9 @@ import {SearchComponent} from './search/search.component';
 import {DetailsComponent} from './details/details.component';
 import {DocumentationComponent} from './documentation/documentation.component';
 import {PanelComponent} from './panel/panel.component';
+import {LoginComponent} from './login/login.component';
+import {SignupComponent} from './signup/signup.component';
+
 import 'rxjs/Rx';
 
 
@@ -21,6 +24,8 @@ import 'rxjs/Rx';
     { path: '/analyze/...', name: 'Analyze', component: AnalyzeComponent },
     { path: '/details/...', name: 'Details', component: DetailsComponent },
     { path: '/panel/...', name: 'Panel', component: PanelComponent },
+    { path: '/login', name: 'Login', component: LoginComponent },
+    { path: '/signup', name: 'Signup', component: SignupComponent },
     {
         path: '/documentation', name: 'Documentation',
         component: DocumentationComponent
