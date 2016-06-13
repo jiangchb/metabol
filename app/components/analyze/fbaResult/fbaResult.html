@@ -1,11 +1,17 @@
 <div class="row">
-    <div class="col-md-12">
-        <visualization [nodes]="nodes" [links]="links" [(isFullScreen)]="isFullScreen"></visualization>
-        <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="previous" (click)="analyze()">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        </button>
-        <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="next" (click)="analyze()">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        </button>
-    </div>
+  <div class="col-md-12">
+    <visualization [nodes]="nodes" [links]="links" [(isFullScreen)]="isFullScreen"></visualization>
+    <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="previous" (click)="previous()">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </button>
+    <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="next" (click)="next()">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    </button>
+    <iteration-color-box [style.position]="isFullScreen ? 'fixed' :'absolute'" [colors]="colors"></iteration-color-box>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <fba-text-result [title]="i +'. Iteration'" *ngFor="let i of [0,1,2,3,4]"></fba-text-result>
+  </div>
 </div>

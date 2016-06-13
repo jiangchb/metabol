@@ -3,7 +3,6 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/c
 import {ConcentrationTableComponent} from '../concentrationTable/concentrationTable.component';
 import {MetaboliteConcentration} from '../../../services/analyze/analyze.service';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {FbaService} from '../../../services/fba/fba.service';
 
 @Component({
     selector: 'upload-measurement',
@@ -14,7 +13,7 @@ export class UploadComponent {
     conTable: Array<MetaboliteConcentration>;
     file: any;
 
-    constructor(fb: FormBuilder, private fba: FbaService) {
+    constructor(fb: FormBuilder) {
         this.conTable = new Array<MetaboliteConcentration>();
     }
 
@@ -49,10 +48,5 @@ export class UploadComponent {
             }
         }
         myReader.readAsText(file);
-    }
-
-    analyze() {
-        console.log(this.conTable);
-        this.fba.startFbaWithData(this.conTable);
     }
 }

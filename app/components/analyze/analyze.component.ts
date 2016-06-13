@@ -24,7 +24,7 @@ import {FbaResultComponent} from './fbaResult/fbaResult.component';
         component: ManualComponent
     },
     {
-        path: '/fba-result', name: 'FbaResult',
+        path: '/fba-result/:fbaKey', name: 'FbaResult',
         component: FbaResultComponent
     }
 ])
