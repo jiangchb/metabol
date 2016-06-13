@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sign Up</h3>
+        </div>
+        <div class="panel-body">
+          <form [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <input class="form-control" id="email" placeholder="Email" type="email" [ngFormControl]="form.controls['email']">
+              <span class="text-danger" *ngIf="!form.controls['email'].valid && form.controls['email'].dirty">
+                Field Required
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="control-label">First Name</label>
+              <input class="form-control" placeholder="First Name" type="text" [ngFormControl]="form.controls['firstName']">
+              <span class="text-danger" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].dirty">
+                Field Required
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="control-label">Last Name</label>
+              <input class="form-control" placeholder="Last Name" type="text" [ngFormControl]="form.controls['lastName']">
+              <span class="text-danger" *ngIf="!form.controls['lastName'].valid && form.controls['lastName'].dirty">
+                Field Required
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="control-label">Password</label>
+              <input class="form-control" placeholder="Password" type="password" [ngFormControl]="form.controls['password']">
+              <span class="text-danger" *ngIf="!form.controls['password'].valid && form.controls['password'].dirty">
+                Field Required
+              </span>
+            </div>
+            <input value="Sign Up" type="submit" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
