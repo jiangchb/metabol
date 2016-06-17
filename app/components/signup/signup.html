@@ -8,31 +8,27 @@
         <div class="panel-body">
           <form [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
             <div class="form-group">
-              <label for="email" class="control-label">Email</label>
-              <input class="form-control" id="email" placeholder="Email" type="email" [ngFormControl]="form.controls['email']">
-              <span class="text-danger" *ngIf="!form.controls['email'].valid && form.controls['email'].dirty">
+              <label for="Email" class="control-label">Email</label>
+              <input class="form-control" id="email" placeholder="Email" type="email" [ngFormControl]="form.controls['Email']">
+              <span class="text-danger" *ngIf="!form.controls['Email'].valid && form.controls['Email'].dirty">
                 Field Required
               </span>
             </div>
             <div class="form-group">
-              <label for="email" class="control-label">First Name</label>
-              <input class="form-control" placeholder="First Name" type="text" [ngFormControl]="form.controls['firstName']">
-              <span class="text-danger" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].dirty">
-                Field Required
-              </span>
+              <label for="Password" class="control-label">Password</label>
+              <input class="form-control" placeholder="Password" type="password" [ngFormControl]="form.controls['Password']">
+              <span class="text-danger" *ngIf="!form.controls['Password'].valid && form.controls['Password'].dirty">
+                  Password needs to be at least 6 characters.
+
+            </span>
+
+
             </div>
             <div class="form-group">
-              <label for="email" class="control-label">Last Name</label>
-              <input class="form-control" placeholder="Last Name" type="text" [ngFormControl]="form.controls['lastName']">
-              <span class="text-danger" *ngIf="!form.controls['lastName'].valid && form.controls['lastName'].dirty">
-                Field Required
-              </span>
-            </div>
-            <div class="form-group">
-              <label for="email" class="control-label">Password</label>
-              <input class="form-control" placeholder="Password" type="password" [ngFormControl]="form.controls['password']">
-              <span class="text-danger" *ngIf="!form.controls['password'].valid && form.controls['password'].dirty">
-                Field Required
+              <label for="ConfirmPassword" class="control-label">Confirm Password</label>
+              <input class="form-control" placeholder="Confirm Password" type="password" [ngFormControl]="form.controls['ConfirmPassword']">
+              <span class="text-danger" *ngIf="form.hasError('mismatchedPasswords')">
+                Passwords do not match
               </span>
             </div>
             <input value="Sign Up" type="submit" class="btn btn-info">
