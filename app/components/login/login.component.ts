@@ -2,23 +2,42 @@ import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 
+import {Observable} from 'rxjs/Observable';
+import { Http, Response, Headers} from 'angular2/http';
+import {Authentication} from '../../services/authentication/authentication';
 @Component({
     selector: 'login',
     templateUrl: '/app/components/login/login.html',
     styleUrls: ['app/components/login/login.css'],
-    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
+    providers: [Authentication],
 })
 export class LoginComponent {
     form: ControlGroup;
+    token: string;
+    error: boolean = false;
 
-    constructor(fb: FormBuilder, private router: Router) {
+    constructor(fb: FormBuilder, public http: Http,public auth: Authentication,private router: Router) {
         this.form = fb.group({
-            "email": ["", Validators.required],
-            "password": ["", Validators.required]
+            "Email": ["", Validators.required],
+            "Password": ["", Validators.required]
         });
+
+
     }
 
     onSubmit(value) {
-      this.router.navigate(['Panel']);
-    }
+        //this.router.navigate(['Panel']);
+        this.auth.login(value.Email,value.Password)
+        .subscribe(
+        response => {
+            this.router.navigate(['Panel'])
+        },
+        error => {
+            alert(error.text());
+            console.log(error.text());
+        });
+
+
+   }
 }

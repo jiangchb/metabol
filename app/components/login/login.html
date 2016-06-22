@@ -2,14 +2,14 @@
   <form [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
     <img src="img/user.png">
     <div class="form-group">
-      <input class="form-control" placeholder="Email" type="email" [ngFormControl]="form.controls['email']">
-      <span class="text-danger" *ngIf="!form.controls['email'].valid && form.controls['email'].dirty">
+      <input class="form-control" placeholder="Email" type="email" [ngFormControl]="form.controls['Email']">
+      <span class="text-danger" *ngIf="!form.controls['Email'].valid && form.controls['Email'].dirty">
         Field Required
       </span>
     </div>
     <div class="form-group">
-      <input class="form-control" placeholder="Password" type="password" [ngFormControl]="form.controls['password']">
-      <span class="text-danger" *ngIf="!form.controls['password'].valid && form.controls['password'].dirty">
+      <input class="form-control" placeholder="Password" type="password" [ngFormControl]="form.controls['Password']">
+      <span class="text-danger" *ngIf="!form.controls['Password'].valid && form.controls['Password'].dirty">
         Field Required
       </span>
     </div>
