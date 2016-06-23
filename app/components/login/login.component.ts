@@ -17,7 +17,7 @@ export class LoginComponent {
     token: string;
     error: boolean = false;
 
-    constructor(fb: FormBuilder, public http: Http,public auth: Authentication,private router: Router) {
+    constructor(fb: FormBuilder, public http: Http, public auth: Authentication, private router: Router) {
         this.form = fb.group({
             "Email": ["", Validators.required],
             "Password": ["", Validators.required]
@@ -27,17 +27,6 @@ export class LoginComponent {
     }
 
     onSubmit(value) {
-        //this.router.navigate(['Panel']);
-        this.auth.login(value.Email,value.Password)
-        .subscribe(
-        response => {
-            this.router.navigate(['Panel'])
-        },
-        error => {
-            alert(error.text());
-            console.log(error.text());
-        });
-
-
-   }
+        this.auth.login(value.Email, value.Password);
+    }
 }

@@ -1,44 +1,36 @@
-// authentication.ts
 import {Injectable} from 'angular2/core';
-import { Http, Response, Headers} from 'angular2/http';
+import { Http, Response, Headers, RequestOptions} from 'angular2/http';
 
 @Injectable()
 export class Authentication {
     token: string;
-    headers: Headers;
-    data2:string;
+    // headers: Headers;
+    data2: string;
     serviceBase = "http://biodb.sehir.edu.tr/api2";
-    constructor(public http: Http) {
+    options: RequestOptions;
+
+    constructor(private http: Http) {
         this.token = localStorage.getItem('token');
-        this.headers = new Headers();
-        this.headers.append('Accept', 'application/json');
-    //    this.headers.append('Access-Control-Allow-Origin', '*');
-        //this.headers.append('Content-Type','application/x-www-form-urlencoded');
-        //this.headers.append('Authorization','Bearer ')
-        this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        this.headers.append('Access-Control-Allow-Methods', 'POST');
-        //this.headers.append('Access-Control-Allow-Origin', '*');
+
+        this.options = new RequestOptions({
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        });
     }
 
     login(Email: String, Password: String) {
-        //this.data2 = "grant_type=password&username=" + value.userName + "&password=" + value.password;
-        return this.http.post(this.serviceBase+"/token", JSON.stringify({Email:Email,Password:Password}),
-        { headers: this.headers })
-            .map((res: any) => {
-            let data = res.json();
-            this.token = data.token;
-            localStorage.setItem('token', this.token);
-        });
-        /*login(Email: String, Password: String) {
-
-            return this.http.post("http://localhost:3000/token",JSON.stringify({grant_type:'password',Email:Email,Password:Password}),
-            { headers: this.headers })
-                .map((res: any) => {
-                let data = res.json();
-                this.token = res.access_token;
+        let postData = { Email: Email, Password: Password, grant_type: "password" };
+        this.http.post(this.serviceBase + "/token", JSON.stringify(postData), this.options)
+            .map(res => {
+                console.log(res);
+                return res.json();
+            })
+            .subscribe((data) => {
+                console.log(data.token);
+                this.token = data.token;
                 localStorage.setItem('token', this.token);
-            });*/
-
+            });
     }
 
     /*logout() {

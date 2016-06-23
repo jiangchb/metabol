@@ -18,11 +18,8 @@
               <label for="Password" class="control-label">Password</label>
               <input class="form-control" placeholder="Password" type="password" [ngFormControl]="form.controls['Password']">
               <span class="text-danger" *ngIf="!form.controls['Password'].valid && form.controls['Password'].dirty">
-                  Password needs to be at least 6 characters.
-
-            </span>
-
-
+                Password needs to be at least 6 characters.
+              </span>
             </div>
             <div class="form-group">
               <label for="ConfirmPassword" class="control-label">Confirm Password</label>
@@ -31,7 +28,7 @@
                 Passwords do not match
               </span>
             </div>
-            <input value="Sign Up" type="submit" class="btn btn-info">
+            <input value="Sign Up" type="submit" class="btn btn-info" [disabled]="!form.valid">
           </form>
         </div>
       </div>
