@@ -18,7 +18,7 @@ export class SignupService {
 
 
     onSubmit(value, callback: (data) => void) {
-        this.http.post(this.apiUrl, JSON.stringify(value), this.options)
+        this.http.post(this.apiUrl, JSON.stringify(value), { headers: this.headers })
             .map((res) => res.json()).subscribe(
             data => {
                 callback(data);

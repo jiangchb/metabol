@@ -18,9 +18,13 @@ export class SignupComponent {
         private http: Http, private router: Router) {
 
         this.form = fb.group({
+            "Name": ["", Validators.required],
+            "Surname": ["", Validators.required],
             "Email": ["", Validators.required],
+            "Institution": ["", Validators.required],
+            "ConfirmPassword": ["", Validators.required],
             "Password": ["", Validators.compose([Validators.required, Validators.minLength(6)])],
-            "ConfirmPassword": ["", Validators.required]
+
         },
             { validator: this.matchingPasswords('Password', 'ConfirmPassword') });
     }
