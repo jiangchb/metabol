@@ -7,11 +7,14 @@
     <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" id="next" (click)="next()">
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     </button>
+    <button [style.position]="isFullScreen ? 'fixed' :'absolute'" class="btn btn-default" (click)="save()" id="save">
+      <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+    </button>
     <iteration-color-box [style.position]="isFullScreen ? 'fixed' :'absolute'" [colors]="colors"></iteration-color-box>
   </div>
 </div>
-<div class="row">
+<div class="row" [hidden]="isFullScreen">
   <div class="col-md-12">
-    <fba-text-result [title]="i +'. Iteration'" *ngFor="let i of [0,1,2,3,4]"></fba-text-result>
+    <fba-text-result [title]="'. Iteration'" [textResult]="textResult"></fba-text-result>
   </div>
 </div>

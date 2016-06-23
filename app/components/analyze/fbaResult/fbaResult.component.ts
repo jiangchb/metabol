@@ -21,6 +21,7 @@ export class FbaResultComponent {
     isFullScreen: Boolean;
     currentIteration: number;
     colors: Array<String>;
+    textResult: Array<any>;
 
     constructor(private fba: FbaService, params: RouteParams) {
         this.colorize = new colorization.IdenticalByHalf();
@@ -29,24 +30,45 @@ export class FbaResultComponent {
         this.colors = new Array<String>();
         this.fba.startFba(params.get('fbaKey'));
         this.currentIteration = 0;
+
+        this.textResult = new Array<any>();
     }
 
     next() {
         this.fba.getNextIteration(
             (data) => {
-                let colorOfIteration = this.colorize.next();
-                data.Nodes.forEach((x) => x.color = colorOfIteration);
-                this.colors.push(colorOfIteration);
+                this.visualizationResultAnalyze(data);
+                this.textResultAnalyze(data);
 
-                this.currentIteration++;
-                data.Nodes.forEach((x) => x.iteration = this.currentIteration);
-
-                this.nodes = this.nodes.concat(data.Nodes);
-                this.links = this.links.concat(data.Links);
             });
     }
 
     previous() {
         this.currentIteration--;
+    }
+
+    save() {
+        this.fba.save((data) => console.log(data));
+    }
+
+    visualizationResultAnalyze(data: FbaIteration) {
+        let colorOfIteration = this.colorize.next();
+        data.Nodes.forEach((x) => x.color = colorOfIteration);
+        this.colors.push(colorOfIteration);
+
+        this.currentIteration++;
+        data.Nodes.forEach((x) => x.iteration = this.currentIteration);
+
+        this.nodes = this.nodes.concat(data.Nodes);
+        this.links = this.links.concat(data.Links);
+    }
+
+    textResultAnalyze(data: FbaIteration) {
+        this.textResult.unshift({
+            constraints: data.Constraints,
+            fluxes: data.Fluxes,
+            newMetaboliteCount: data.Nodes.map(x => x.type == "r").length,
+            newReactionCount: data.Nodes.map(x => x.type == "m").length
+        });
     }
 }

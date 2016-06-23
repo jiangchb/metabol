@@ -5,14 +5,21 @@ import {MetaboliteConcentration} from '../analyze/analyze.service';
 
 @Injectable()
 export class FbaService {
-    apiUrl = "http://biodb.sehir.edu.tr/api2/fba/";
+    apiUrl = "http://biodb.sehir.edu.tr/api2/fba/analysis/";
     currentIteration: number;
     key: String;
     fbas: Array<FbaIteration>;
+    options: RequestOptions;
 
     constructor(private http: Http) {
         this.currentIteration = 0;
         this.fbas = new Array<FbaIteration>();
+        this.options = new RequestOptions({
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            })
+        });
     }
 
     startFba(key?: string) {
@@ -27,12 +34,11 @@ export class FbaService {
     }
 
     getFbaKeyForData(data: Array<MetaboliteConcentration>, callback: (key: string) => void) {
-
-        let options = new RequestOptions({
-            headers: new Headers({ 'Content-Type': 'application/json' })
-        });
-
-        this.http.post(this.apiUrl + 'start', JSON.stringify(data), options)
+        let postData = {
+            "Name": "Test name",
+            "ConcentrationChanges": data
+        };
+        this.http.post(this.apiUrl + 'start', JSON.stringify(postData), this.options)
             .map((res) => res.json()).subscribe(
             (data) => {
                 callback(data['key']);
@@ -41,11 +47,18 @@ export class FbaService {
 
     getNextIteration(callback: (key: FbaIteration) => void) {
         this.currentIteration++;
-        this.http.get(this.apiUrl + this.key + '/' + this.currentIteration)
+        this.http.get(this.apiUrl + this.key + '/' + this.currentIteration, this.options)
             .map(res => res.json()).subscribe(
             (data: FbaIteration) => {
                 this.fbas.push(data);
+                console.log(data);
                 callback(data);
             });
+    }
+
+    save(callback: (key: string) => void) {
+        this.http.post(this.apiUrl + 'save/', JSON.stringify(this.key), this.options)
+            .map((res) => res.json())
+            .subscribe((data) => callback(data));
     }
 }

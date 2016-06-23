@@ -4,6 +4,8 @@ export interface FbaIteration {
     id: number;
     fba: number;
     time: number;
+    Constraints:Array<String>;
+    Fluxes:Array<Array<number>>;
     Nodes: Array<FbaNode>;
     Links: Array<FbaLink>;
 }
