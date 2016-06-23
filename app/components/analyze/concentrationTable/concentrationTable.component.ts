@@ -1,5 +1,5 @@
 import {Component, Input} from 'angular2/core';
-import {MetaboliteConcentration} from '../../../services/analyze/analyze.service';
+import {MetaboliteConcentration} from '../../../services/fba/metaboliteConcentration';
 import {Control, FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {KeysPipe} from '../../../pipes/keys.pipe';
 import {FbaService} from '../../../services/fba/fba.service';

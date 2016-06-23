@@ -1,7 +1,8 @@
 import {Injectable} from 'angular2/core'
 import {Http, Headers, RequestOptions} from 'angular2/http';
 import {FbaIteration} from './fbaiteration';
-import {MetaboliteConcentration} from '../analyze/analyze.service';
+import {MetaboliteConcentration} from './metaboliteConcentration';
+
 
 @Injectable()
 export class FbaService {
