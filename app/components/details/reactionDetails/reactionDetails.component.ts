@@ -24,10 +24,11 @@ export class ReactionDetailsComponent implements OnInit {
     ngOnInit() {
         let reactionId = this.route.get('reactionId');
 
-        this.rea.getReaction(reactionId,
-            (data) => this.reaction = data);
+        this.rea.getRelatedMetabolites(reactionId)
+            .subscribe(data => this.relatedMetabolites = data['metabolites']);
+        this.rea.getReaction(reactionId)
+            .subscribe(data => this.reaction = data);
 
-        this.rea.getRelatedMetabolites(reactionId,
-            (data) => this.relatedMetabolites = data);
+
     }
 }

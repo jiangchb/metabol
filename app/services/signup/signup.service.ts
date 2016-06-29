@@ -13,19 +13,15 @@ export class SignupService {
         this.apiUrl = 'http://biodb.sehir.edu.tr/api2/account/Register';
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
-        this.options = { headers: this.headers };
+
     }
 
 
-    onSubmit(value, callback: (data) => void) {
-        this.http.post(this.apiUrl, JSON.stringify(value), { headers: this.headers })
-            .map((res) => res.json()).subscribe(
-            data => {
-                callback(data);
-            },
-            error => {
-                alert(error.text());
-                console.log(error.text());
-            });
+    onSubmit(value) {
+       return this.http.post(this.apiUrl,
+           JSON.stringify(value), { headers: this.headers })
+
+
+   
     }
 }

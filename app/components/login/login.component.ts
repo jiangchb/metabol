@@ -4,7 +4,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators} from 'angular2/c
 
 import {Observable} from 'rxjs/Observable';
 import { Http, Response, Headers} from 'angular2/http';
-import {Authentication} from '../../services/authentication/authentication';
+import {Authentication} from '../../services/login/login';
 @Component({
     selector: 'login',
     templateUrl: '/app/components/login/login.html',

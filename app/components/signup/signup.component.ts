@@ -45,9 +45,16 @@ export class SignupComponent {
 
 
     onSubmit(value) {
-        this._signupService.onSubmit(value, (data) => {
-            console.log(data);
-            this.router.navigate(['Panel']);
-        });
+        console.log(value);
+        this._signupService.onSubmit(value)
+            .subscribe(
+            response => {
+                this.router.navigate(['Panel'])
+            },
+            error => {
+                alert(error.text());
+                console.log(error.text());
+            });
+
     }
 }

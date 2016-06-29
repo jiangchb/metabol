@@ -17,10 +17,16 @@ export class AnalyzeService {
     }
 
     getList(callback: (data) => void) {
+        this.http.get(this.apiUrl + "list")
+            .map(response => response.json())
+            .subscribe(data=> {
+                callback(data)
 
+        });
     }
 
     getDetail(key, callback: (data) => void) {
-      
+
+
     }
 }
