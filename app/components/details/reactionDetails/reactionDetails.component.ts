@@ -19,15 +19,33 @@ export class ReactionDetailsComponent implements OnInit {
     constructor(private rea: ReactionService, private route: RouteParams) {
         this.reaction = new Reaction();
         this.relatedMetabolites = new Array<any>();
+        this.check();
     };
 
     ngOnInit() {
         let reactionId = this.route.get('reactionId');
 
-        this.rea.getRelatedMetabolites(reactionId)
-            .subscribe(data => this.relatedMetabolites = data['metabolites']);
         this.rea.getReaction(reactionId)
             .subscribe(data => this.reaction = data);
+
+        this.rea.getRelatedMetabolites(reactionId)
+            .subscribe(data => this.relatedMetabolites = data['metabolites']);
+
+
+
+    }
+
+    check() { //If array is empty run again to fill it
+        let reactionId = this.route.get('reactionId');
+        if (this.reaction.id == null || this.relatedMetabolites.length == 0)
+            this.rea.getRelatedMetabolites(reactionId)
+                .subscribe(data => this.relatedMetabolites = data['metabolites']);
+
+        this.rea.getReaction(reactionId)
+            .subscribe(data => this.reaction = data);
+
+
+
 
 
     }
