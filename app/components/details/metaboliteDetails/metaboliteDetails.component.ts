@@ -34,5 +34,11 @@ export class MetaboliteDetailsComponent implements OnInit {
         this._metaboliteService.getRelatedReactions(metaboliteId).subscribe(
             data => this.relatedReactions = data
             )
+
     }
+
+//    check_metabolite_detail(){
+
+//        if(this.metabolite.length ==)
+//    }
 }
